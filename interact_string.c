@@ -6,11 +6,11 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:50:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/11 10:30:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/12 12:55:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libstd.h>
+#include <stdlib.h>
 #include "interactive_string_defs.h"
 
 t_interact_str	*create_interact_str(void)
