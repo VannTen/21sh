@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:04:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/11 11:05:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/18 14:26:03 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define TERM_ACTIONS_INTERFACE_H
 
 int	term_act(void);
+
+typedef struct s_line_editor	t_line_editor;
 
 #endif
