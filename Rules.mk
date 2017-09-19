@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/12/13 19:41:31 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/05/10 18:42:28 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/19 16:55:33 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -53,6 +53,8 @@ TARGET_$(DIR) := $(DIR)$(BUILD_PREFIX)$(TARGET)
 $(call CLEAR_VAR_LIST, $(EMPTY_DEPS.MK))
 include $(DIR)Dependencies.mk
 $(TARGET): LIB_INCLUDES := $(LIBRARY)
+$(TARGET): LDFLAGS_TGT := $(addprefix -l,$(SYSTEM_LIBRARY))
+
 LIBS_$(DIR) := $(LIBRARY)
 
 # Inclusion of subdirs Rules.mk

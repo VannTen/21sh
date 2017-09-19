@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/04 13:12:11 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/05/11 11:37:33 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/19 16:54:56 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -140,7 +140,7 @@ EMPTY_SRCS.MK := TARGET \
  DEP_DIR \
  TEST_DIR \
  SUBDIRS 
-EMPTY_DEPS.MK := LIBRARY ELSE OBJECTS SUBDIRS
+EMPTY_DEPS.MK := LIBRARY ELSE OBJECTS SUBDIRS SYSTEM_LIBRARY
 CLEAR_VAR_LIST = $(foreach VARIABLE, $1,$(eval $(VARIABLE):= )) 
 
 
