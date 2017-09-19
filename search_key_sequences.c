@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 16:42:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:31:16 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
 	while (sequences[index].str != NULL)
 	{
 		if (sequences[index].str[0] == c)
-			f_lstpush(sequences[index].str, &stack);
+			f_lstpush(sequences + index, &stack);
 		index++;
 	}
 	return (stack);
