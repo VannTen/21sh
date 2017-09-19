@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:26:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 15:20:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 16:06:19 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct	s_line_editor
 {
 	t_interact_str		*buffer;
 	int					term_fd;
-	char				**seq_received;
+	t_keypad_cmd		*keys_cmd;
 	char				**seq_send;
 };
 

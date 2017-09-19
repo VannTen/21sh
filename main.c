@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/11 13:09:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 16:59:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int main(void)
 	errno = 0;
 	term = getenv("TERM");
 	success = tgetent(NULL, term);
-
 	if (success == 1)
 	{
 		cmd = tgetstr("ks", NULL);

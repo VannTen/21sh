@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/12 12:53:16 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/19 16:19:34 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@
 TARGET := shell
 
 SRC :=\
+	ft_arrow_keys.c\
+	interact_str_get.c\
 	interact_string.c\
-	line_edit.c\
+	line_editor.c\
 	main.c\
-	n_ary_tree_ressources.c\
+	search_key_sequences.c\
 	term_actions.c
 
 # Directories

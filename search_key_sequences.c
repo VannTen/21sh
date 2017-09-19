@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 14:28:42 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 16:42:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ t_bool		is_validated(t_line_editor *buf)
 	return (get_current_letter(buf->buffer) == '\n');
 }
 
-t_lst	*populate_stack(char **sequences, char c)
+t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
 {
 	size_t	index;
 	t_lst	*stack;
 
 	index = 0;
 	stack = NULL;
-	while (sequences[index] != NULL)
+	while (sequences[index].str != NULL)
 	{
-		if (sequences[index][0] == c)
-			f_lstpush(sequences[index], &stack);
+		if (sequences[index].str[0] == c)
+			f_lstpush(sequences[index].str, &stack);
 		index++;
 	}
 	return (stack);
@@ -75,7 +75,7 @@ char			consume_one_sequence(t_keypad_cmd *seq, char *buf, size_t index,
 	seq_size = ft_strlen(seq->str);
 	while (index < seq_size && ft_strequ_short(seq->str, buf))
 	{
-		ret = read(STDIN_FILENO, buf + index, 1);
+		ret = read(buffer->term_fd, buf + index, 1);
 		if (ret == -1)
 			fatal();
 		else if (ret == 0)
@@ -100,13 +100,13 @@ char			search_seq(char *buf, t_line_editor *buffer)
 	size_t	index;
 	int		ret;
 
-	possible_match = populate_stack(buffer->seq_received, buf[0]);
+	possible_match = populate_stack(buffer->keys_cmd, buf[0]);
 	if (possible_match == NULL)
 		return ('\0');
 	index = 1;
 	while (f_lst_len(possible_match) > 1)
 	{
-		ret = read(STDIN_FILENO, buf + index, 1);
+		ret = read(buffer->term_fd, buf + index, 1);
 		index++;
 		buf[index] = '\0';
 		if (ret == 0)
@@ -122,7 +122,7 @@ char			search_seq(char *buf, t_line_editor *buffer)
 		return ('\0');
 }
 
-int	search_for_sequence(int fd, t_line_editor *term)
+int	search_for_sequence(t_line_editor *term)
 {
 	char	buf[10];
 	char	left_alone;
@@ -133,7 +133,7 @@ int	search_for_sequence(int fd, t_line_editor *term)
 		if (left_alone != '\0')
 			buf[0] = left_alone;
 		else
-			read(fd, &buf, 1);
+			read(term->term_fd, &buf, 1);
 		buf[1] = '\0';
 		left_alone = search_seq(buf, term);
 		if (ft_strlen(buf) != send_to_buffer(buf, term->buffer))

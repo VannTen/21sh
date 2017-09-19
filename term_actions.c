@@ -6,13 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 10:45:04 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 13:55:37 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 16:43:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_actions_defs.h"
 #include "libft.h"
-#include <termcap.h>
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
@@ -20,12 +19,10 @@
 
 int	term_act(void)
 {
-	char	*left_arrow;
-	char	buf[4];
-	int		nb_read;
-	static t_keypad_cmd	*key_sequences = NULL;
+	t_line_editor	*term;
 
-	if (key_sequences == NULL)
-		key_sequences = generate_keys_cmd_sequences();
-		return (1);
+	term = create_line_editor(STDIN_FILENO);
+	if (term != NULL)
+		search_for_sequence(term);
+	return (1);
 }
