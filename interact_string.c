@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:50:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 10:23:08 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 12:38:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ static t_str_link	*create_str_link(char letter,
 	return (new_letter);
 }
 
-static void		destroy_str_link(struct	s_str_link *link)
+static void		destroy_str_link(t_str_link **link)
 {
-	link->before = NULL;
-	link->after = NULL;
-	link->letter = '\0';
-	free(link);
+	t_str_link	*to_destroy;
+
+	to_destroy = *link;
+	to_destroy->before = NULL;
+	to_destroy->after = NULL;
+	to_destroy->letter = '\0';
+	free(to_destroy);
+	*link = NULL;
 }
 
 t_interact_str	*create_interact_str(void)
@@ -65,7 +69,7 @@ void			destroy_interact_str(t_interact_str **ptr_to_destroy)
 		{
 			current_letter = next_letter;
 			next_letter = next_letter->after;
-			destroy_str_link(current_letter);
+			destroy_str_link(&current_letter);
 		}
 		to_destroy->begin = NULL;
 		to_destroy->end = NULL;
@@ -87,4 +91,18 @@ t_interact_str	*add_letter(t_interact_str *str, char new_letter)
 	str->current->before = new_link;
 	str->current = new_link;
 	return (new_link != NULL ? str : NULL);
+}
+
+t_bool			del_letter(t_interact_str *str)
+{
+	t_str_link	*tmp;
+	if (str->current == str->end)
+		return (FALSE);
+	str->current->after->before = str->current->before;
+	if (str->current->before != NULL)
+		str->current->before->after = str->current->after;
+	tmp = str->current;
+	str->current = str->current->after;
+	destroy_str_link(&tmp);
+	return (TRUE);
 }
