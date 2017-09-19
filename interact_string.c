@@ -6,34 +6,20 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:50:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/12 12:55:43 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 10:23:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "interactive_string_defs.h"
 
-t_interact_str	*create_interact_str(void)
+static t_str_link	*create_str_link(char letter,
+		t_str_link *before,
+		t_str_link *after)
 {
-	t_interact_str	*new_str;
+	t_str_link	*new_letter;
 
-	new_str = malloc(sizeof(t_interact_str));
-	if (new_str != NULL)
-	{
-		new_str->begin = NULL;
-		new_str->end = NULL;
-		new_str->current = NULL;
-	}
-	return (new_str);
-}
-
-static struct s_str_link	*create_str_link(char letter,
-		t_str_link const *before,
-		t_str_link const *after)
-{
-	struct s_str_link	*new_letter;
-
-	new_letter = malloc(sizeof(struct s_str_link));
+	new_letter = malloc(sizeof(t_str_link));
 	if (new_letter != NULL)
 	{
 		new_letter->letter = letter;
@@ -51,11 +37,25 @@ static void		destroy_str_link(struct	s_str_link *link)
 	free(link);
 }
 
+t_interact_str	*create_interact_str(void)
+{
+	t_interact_str	*new_str;
+
+	new_str = malloc(sizeof(t_interact_str));
+	if (new_str != NULL)
+	{
+		new_str->begin = create_str_link('\0', NULL, NULL);
+		new_str->end = new_str->begin;
+		new_str->current = new_str->begin;
+	}
+	return (new_str);
+}
+
 void			destroy_interact_str(t_interact_str **ptr_to_destroy)
 {
 	t_interact_str		*to_destroy;
-	struct s_str_link	*current_letter;
-	struct s_str_link	*next_letter;
+	t_str_link	*current_letter;
+	t_str_link	*next_letter;
 
 	if (ptr_to_destroy != NULL)
 	{
@@ -73,4 +73,18 @@ void			destroy_interact_str(t_interact_str **ptr_to_destroy)
 		free(to_destroy);
 		*ptr_to_destroy = NULL;
 	}
+}
+
+t_interact_str	*add_letter(t_interact_str *str, char new_letter)
+{
+	t_str_link	*new_link;
+
+	new_link = create_str_link(new_letter, str->current->before, str->current);
+	if (str->current->before != NULL)
+		str->current->before->after = new_link;
+	else
+		str->begin = new_link;
+	str->current->before = new_link;
+	str->current = new_link;
+	return (new_link != NULL ? str : NULL);
 }

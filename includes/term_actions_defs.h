@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 13:26:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/18 14:27:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 09:59:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ struct	s_keypad_cmd_pattern
 {
 	char	*term_cap_received;
 	char	*term_cap_sent;
-	int		(*perform_intern)(t_interact_str *buf);
+	int		(*perform_intern)(t_line_editor*);
 };
 
 struct	s_keypad_cmd
 {
 	char	*seq_received;
 	char	*seq_sent;
-	int		(*perform_intern)(t_interact_str *buf);
+	int		(*perform_intern)(t_line_editor*);
 };
 
 struct	s_line_editor
