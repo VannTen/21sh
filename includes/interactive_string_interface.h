@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 12:37:01 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/19 14:00:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,12 @@ void			destroy_interact_str(t_interact_str** to_destroy);
 
 t_interact_str	*add_letter(t_interact_str *str, char new_letter);
 t_bool			del_letter(t_interact_str *str);
+
+/*
+** Getters
+** Implementation file : interact_str_get.c
+*/
+
+char			get_current_letter(t_interact_str * const str);
+
 #endif
