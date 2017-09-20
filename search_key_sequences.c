@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 17:31:16 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/20 14:44:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 t_bool		is_validated(t_line_editor *buf)
 {
-	return (get_current_letter(buf->buffer) == '\n');
+	return (get_current_letter(buf->buffer) == '\n' ||
+			int_str_get_size(buf->buffer) > 20);
 }
 
 t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
@@ -44,9 +45,13 @@ t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
 static t_bool	match(const void *v_sequence, va_list args)
 {
 	const t_keypad_cmd	*sequence;
+	char				c;
+	size_t				index;
 
 	sequence = v_sequence;
-	return (sequence->str[va_arg(args, size_t)] == va_arg(args, int));
+	index = va_arg(args, size_t);
+	c = va_arg(args, int);
+	return (sequence->str[index] != c);
 }
 
 static size_t	send_to_buffer(char *buf, t_interact_str *buffer)
@@ -76,6 +81,8 @@ char			consume_one_sequence(t_keypad_cmd *seq, char *buf, size_t index,
 	while (index < seq_size && ft_strequ_short(seq->str, buf))
 	{
 		ret = read(buffer->term_fd, buf + index, 1);
+		index++;
+		buf[index] = '\0';
 		if (ret == -1)
 			fatal();
 		else if (ret == 0)
@@ -84,6 +91,7 @@ char			consume_one_sequence(t_keypad_cmd *seq, char *buf, size_t index,
 	if (ft_strequ(seq->str, buf))
 	{
 		seq->action(buffer);
+		ft_strclr(buf);
 		left_alone = '\0';
 	}
 	else
@@ -113,7 +121,7 @@ char			search_seq(char *buf, t_line_editor *buffer)
 			return ('\0');
 		else
 			f_lstremoveif_va(&possible_match, &match, &no_destroy,
-					index, buf[index]);
+					index - 1, buf[index - 1]);
 	}
 	if (f_lst_len(possible_match) == 1)
 		return (consume_one_sequence(f_lstpop(&possible_match), buf, index,
@@ -136,6 +144,7 @@ int	search_for_sequence(t_line_editor *term)
 			read(term->term_fd, &buf, 1);
 		buf[1] = '\0';
 		left_alone = search_seq(buf, term);
+		ft_putstr_fd(buf, term->term_fd);
 		if (ft_strlen(buf) != send_to_buffer(buf, term->buffer))
 			fatal();
 	}
