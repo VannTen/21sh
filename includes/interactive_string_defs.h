@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:38:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 10:22:35 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/20 10:44:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct	s_interact_str
 	struct s_str_link	*begin;
 	struct s_str_link	*end;
 	struct s_str_link	*current;
+	size_t				size;
 };
 
 #endif

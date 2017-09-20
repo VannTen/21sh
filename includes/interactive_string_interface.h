@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 14:00:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/20 11:03:41 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_bool			del_letter(t_interact_str *str);
 */
 
 char			get_current_letter(t_interact_str * const str);
+char			*get_full_string(t_interact_str * const str);
+size_t			int_str_get_size(t_interact_str * const str);
 
 #endif

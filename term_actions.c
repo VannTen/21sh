@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 10:45:04 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 16:43:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/20 12:33:12 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int	term_act(void)
+char	*term_act(void)
 {
 	t_line_editor	*term;
+	char			*str;
 
 	term = create_line_editor(STDIN_FILENO);
 	if (term != NULL)
 		search_for_sequence(term);
-	return (1);
+	str = get_full_string(term->buffer);
+	destroy_line_editor(&term);
+	return (str);
 }
