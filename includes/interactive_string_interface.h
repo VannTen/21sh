@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/20 11:03:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/21 19:17:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void			destroy_interact_str(t_interact_str** to_destroy);
 
 t_interact_str	*add_letter(t_interact_str *str, char new_letter);
 t_bool			del_letter(t_interact_str *str);
+
+/*
+** Moving inside the string
+** Implementation file : interact_str_move.c
+*/
+
+size_t			forward_x_letter(t_interact_str *str, size_t nb_letter);
+size_t			back_x_letter(t_interact_str *str, size_t nb_letter);
 
 /*
 ** Getters
