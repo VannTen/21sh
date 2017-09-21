@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:02:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/19 16:22:11 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/21 19:06:27 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void			destroy_line_editor(t_line_editor **line_editor)
 	{
 		destroy_interact_str(&to_destroy->buffer);
 	}
+	free(to_destroy);
 	*line_editor = NULL;
 }
