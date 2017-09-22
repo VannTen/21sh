@@ -6,24 +6,27 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:45:23 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/20 14:47:13 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/21 19:28:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_actions_defs.h"
+#include "cursor_interface.h"
 #include "libft.h"
 #include <termcap.h>
 #include <stddef.h>
 
 static int	left_arrow(t_line_editor *term)
 {
-	(void)term;
+	if (back_x_letter(term->buffer, 1) != 0)
+		move_cursor_relatively(term->term_fd, LEFT, 1);
 	return (ft_printf("\nleft arrow\n"));
 }
 
 static int	right_arrow(t_line_editor *term)
 {
-	(void)term;
+	if (back_x_letter(term->buffer, 1) != 0)
+		move_cursor_relatively(term->term_fd, LEFT, 1);
 	return (ft_printf("\nright arrow\n"));
 }
 
