@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 12:35:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/23 17:03:02 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_keypad_cmd		t_keypad_cmd;
 
 t_term_device	*create_term_device(int fd);
 void			destroy_term_device(t_term_device **term);
+
 /*
 ** Named constant passed as parameters to function which expect a direction
 ** to move the cursor
@@ -46,5 +47,12 @@ enum	e_direction
 
 void	move_cursor_relatively(t_term_device *term,
 		enum e_direction dir, size_t n_time);
+
+/*
+** Insertion and deletion of characters
+** Implemetation file : term_insert_del.c
+*/
+
+void	insert_character(t_term_device *term, char c);
 
 #endif

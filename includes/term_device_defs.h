@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 12:20:39 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/23 17:47:14 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,49 @@ struct	s_term_device
 	t_keypad_cmd	*keys_cmd;
 	char			**seq_send;
 	t_position		cursor;
+	int				(*putchar)(int);
 };
 
+enum	e_term_string_send
+{
+	CURSOR_LEFT,
+	CURSOR_RIGHT,
+	CURSOR_UP,
+	CURSOR_DOWN,
+	KS,
+	KE,
+	INSERT_CHAR,
+	INSERT_MODE,
+	INSERT_PADDING,
+	EXIT_INSERT,
+	DELETE_MODE,
+	DELETE_CHAR,
+	EXIT_DELETE,
+	NB_TERM_STRING
+};
+
+# define CMD_STRING_PATTERN \
+	"le",\
+	"nd",\
+	"up",\
+	"do",\
+	"ks",\
+	"ke",\
+	"ic",\
+	"im",\
+	"ip",\
+	"ei",\
+	"dm",\
+	"dc",\
+	"ec"
+
+/*
+** Iternal ressources management of termcaps strings
+** Implementation file : term_string_codes.c
+*/
+
+char			**create_cmd_strings(void);
+t_keypad_cmd	*generate_keys_cmd_sequences(void);
+void			destroy_keys_cmd_sequences(t_keypad_cmd **sequences);
 
 #endif

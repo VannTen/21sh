@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/23 12:13:23 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/23 17:41:44 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ TARGET := shell
 SRC :=\
 	ft_arrow_keys.c\
 	term_device_init.c\
+	term_string_codes.c\
 	cursor_movement.c\
 	interact_str_get.c\
 	interact_str_move.c\

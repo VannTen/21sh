@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 12:40:59 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/23 17:59:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 #include <stdlib.h>
 
 # define MAX_SEQ_LENGHT 10
-
-t_bool		is_validated(t_line_editor *buf)
-{
-	return (get_current_letter(buf->buffer) == '\n' ||
-			int_str_get_size(buf->buffer) > 20);
-}
 
 t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
 {
@@ -131,6 +125,17 @@ char			search_seq(char *buf, t_line_editor *buffer)
 	else
 		return ('\0');
 }
+
+/*
+** Keep those
+*/
+
+t_bool		is_validated(t_line_editor *buf)
+{
+	return (get_current_letter(buf->buffer) == '\n' ||
+			int_str_get_size(buf->buffer) > 20);
+}
+
 
 int	search_for_sequence(t_line_editor *term)
 {
