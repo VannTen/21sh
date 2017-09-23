@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cursor_interface.h                                 :+:      :+:    :+:   */
+/*   term_device_defs.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 19:26:01 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/21 19:28:19 by mgautier         ###   ########.fr       */
+/*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
+/*   Updated: 2017/09/23 12:20:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURSOR_INTERFACE_H
-# define CURSOR_INTERFACE_H
+#ifndef TERM_DEVICE_DEFS_H
+# define TERM_DEVICE_DEFS_H
+# include "term_device_interface.h"
+# include "term_actions_interface.h"
 
 
-/*
-** Named constant passed as parameters to function which expect a direction
-** to move the cursor
-*/
+typedef struct s_position		t_position;
 
-enum	e_direction
+struct	s_keypad_cmd
 {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT
+	char			*str;
+	t_term_action	action;
 };
 
-/*
-** Function to move cursor on the terminal
-** Implementation file : cursor_movement.c
-*/
+struct	s_position
+{
+	int	x;
+	int y;
+};
 
-void	move_cursor_relatively(int fd, enum e_direction dir, size_t	n_time);
+
+struct	s_term_device
+{
+	int				fd;
+	t_keypad_cmd	*keys_cmd;
+	char			**seq_send;
+	t_position		cursor;
+};
 
 
 #endif

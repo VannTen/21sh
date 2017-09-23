@@ -6,11 +6,13 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/20 14:44:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/23 12:40:59 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "term_device_defs.h"
 #include "term_actions_defs.h"
+#include "interactive_string_interface.h"
 #include "libft.h"
 #include <stdarg.h>
 #include <sys/types.h>
@@ -80,7 +82,7 @@ char			consume_one_sequence(t_keypad_cmd *seq, char *buf, size_t index,
 	seq_size = ft_strlen(seq->str);
 	while (index < seq_size && ft_strequ_short(seq->str, buf))
 	{
-		ret = read(buffer->term_fd, buf + index, 1);
+		ret = read(buffer->term->fd, buf + index, 1);
 		index++;
 		buf[index] = '\0';
 		if (ret == -1)
@@ -108,13 +110,13 @@ char			search_seq(char *buf, t_line_editor *buffer)
 	size_t	index;
 	int		ret;
 
-	possible_match = populate_stack(buffer->keys_cmd, buf[0]);
+	possible_match = populate_stack(buffer->term->keys_cmd, buf[0]);
 	if (possible_match == NULL)
 		return ('\0');
 	index = 1;
 	while (f_lst_len(possible_match) > 1)
 	{
-		ret = read(buffer->term_fd, buf + index, 1);
+		ret = read(buffer->term->fd, buf + index, 1);
 		index++;
 		buf[index] = '\0';
 		if (ret == 0)
@@ -141,10 +143,10 @@ int	search_for_sequence(t_line_editor *term)
 		if (left_alone != '\0')
 			buf[0] = left_alone;
 		else
-			read(term->term_fd, &buf, 1);
+			read(term->term->fd, &buf, 1);
 		buf[1] = '\0';
 		left_alone = search_seq(buf, term);
-		ft_putstr_fd(buf, term->term_fd);
+		ft_putstr_fd(buf, term->term->fd);
 		if (ft_strlen(buf) != send_to_buffer(buf, term->buffer))
 			fatal();
 	}
