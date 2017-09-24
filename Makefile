@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/04 13:12:11 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/09/19 16:54:56 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/24 21:19:02 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -58,7 +58,7 @@ SYSTEM = $(shell uname)
 
 # Compiler flags
 ERROR_FLAGS := -Wall -Wextra -Werror $(STANDARD) -pedantic-errors
-DEBUG_FLAGS := -g -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer
+DEBUG_FLAGS := -g3 -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer
 SYNTAX_FLAGS := -fsyntax-only -ferror-limit=0
 OPTI_CFLAGS := -flto -Ofast
 OPTI_LDFLAGS := -flto
