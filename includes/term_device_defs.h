@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 20:22:28 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 00:43:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ enum	e_term_string_send
 	"ec"
 
 /*
-** Iternal ressources management of termcaps strings
+** Internal ressources management of termcaps strings
 ** Implementation file : term_string_codes.c
 */
 

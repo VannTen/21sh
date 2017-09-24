@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 21:23:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 00:37:12 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	left_arrow(t_line_editor *term);
 int right_arrow(t_line_editor *term);
 int up_arrow(t_line_editor *term);
 int down_arrow(t_line_editor *term);
+int	backspace(t_line_editor *term);
+int	delete(t_line_editor *term);
 int ft_a(t_line_editor *term);
 
 char	**create_cmd_strings(void)
@@ -66,12 +68,16 @@ t_keypad_cmd	*generate_keys_cmd_sequences(void)
 		"kr",
 		"ku",
 		"kd",
+		"kb",
+		"kD"
 	};
 	static t_term_action	actions[] = {
 		left_arrow,
 		right_arrow,
 		up_arrow,
 		down_arrow,
+		backspace,
+		delete
 	};
 	t_keypad_cmd			*key_sequences;
 	size_t					index;
