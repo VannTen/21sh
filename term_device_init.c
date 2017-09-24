@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 17:40:58 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:10:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			destroy_term_device(t_term_device **term)
 	{
 		to_destroy->fd = 0;
 		destroy_keys_cmd_sequences(&to_destroy->keys_cmd);
-		ft_free_string_array(&to_destroy->seq_send);
+		destroy_cmd_strings(&to_destroy->seq_send);
 		to_destroy->cursor.x = 0;
 		to_destroy->cursor.y = 0;
 		free(to_destroy);

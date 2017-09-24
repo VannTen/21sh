@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 17:58:01 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:23:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,25 @@ char	**create_cmd_strings(void)
 		}
 	}
 	return (cmd_strings);
+}
+
+void	destroy_cmd_strings(char ***cmd_strings)
+{
+	size_t	index;
+	char	**to_destroy;
+
+	to_destroy = *cmd_strings;
+	if (to_destroy != NULL)
+	{
+		index = 0;
+		while (index < NB_TERM_STRING)
+		{
+			to_destroy[index] = NULL;
+			index++;
+		}
+		free(to_destroy);
+		*cmd_strings = NULL;
+	}
 }
 
 t_keypad_cmd	*generate_keys_cmd_sequences(void)

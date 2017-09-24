@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 17:47:14 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:22:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ enum	e_term_string_send
 */
 
 char			**create_cmd_strings(void);
+void			destroy_cmd_strings(char ***cmd_strings);
 t_keypad_cmd	*generate_keys_cmd_sequences(void);
 void			destroy_keys_cmd_sequences(t_keypad_cmd **sequences);
 
