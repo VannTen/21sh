@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 17:03:02 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:35:19 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	move_cursor_relatively(t_term_device *term,
 */
 
 void	insert_character(t_term_device *term, char c);
+void	delete_character(t_term_device *term);
 
 #endif

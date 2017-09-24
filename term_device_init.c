@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 20:10:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 00:09:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "libft.h"
 #include <termcap.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+static int	cust_putchar(int c)
+{
+	return (write(STDOUT_FILENO, &c, 1));
+}
 
 t_term_device	*create_term_device(int fd)
 {
@@ -27,6 +33,7 @@ t_term_device	*create_term_device(int fd)
 		new->seq_send = create_cmd_strings();
 		new->cursor.x = tgetnum("li");
 		new->cursor.y = tgetnum("co");
+		new->putchar = cust_putchar;
 	}
 	return (new);
 }
