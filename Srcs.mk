@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/23 17:41:44 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/24 20:56:29 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC :=\
 	ft_arrow_keys.c\
 	term_device_init.c\
 	term_string_codes.c\
+	term_insert_del.c\
 	cursor_movement.c\
 	interact_str_get.c\
 	interact_str_move.c\

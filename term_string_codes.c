@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 20:23:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 21:23:03 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int ft_a(t_line_editor *term);
 
 char	**create_cmd_strings(void)
 {
-	static char	*cap_names[] = {CMD_STRING_PATTERN};
-	size_t		index;
-	char		**cmd_strings;
+	static char				*cap_names[] = {CMD_STRING_PATTERN};
+	enum e_term_string_send	index;
+	char					**cmd_strings;
 
 	cmd_strings = malloc(NB_TERM_STRING * sizeof(char*));
 	if (cmd_strings != NULL)

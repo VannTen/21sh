@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/20 15:50:44 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:59:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(void)
 		tcgetattr(STDIN_FILENO, &tty_settings);
 		ft_putchar(tty_settings.c_cc[VKILL]);
 		tty_settings.c_lflag &= ~(ICANON | ECHO);
+		tty_settings.c_oflag &= ~(OPOST);
 		tty_settings.c_cc[VMIN] = 1;
 		tty_settings.c_cc[VTIME] = 0;
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_settings);
@@ -53,10 +54,10 @@ int main(void)
 		else
 			PC = '\0';
 		cmd = tgetstr("ks", NULL);
-		write(STDIN_FILENO, cmd, ft_strlen(cmd));
+		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
 		result = term_act();
 		cmd = tgetstr("ke", NULL);
-		write(STDIN_FILENO, cmd, ft_strlen(cmd));
+		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_original);
 		ft_printf("\nResult :\n\"%s\"\n", result);
 	}

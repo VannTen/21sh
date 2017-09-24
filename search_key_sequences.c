@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 17:59:18 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/24 20:55:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_bool	match(const void *v_sequence, va_list args)
 	return (sequence->str[index] != c);
 }
 
-static size_t	send_to_buffer(char *buf, t_interact_str *buffer)
+static size_t	send_to_buffer(char *buf, t_line_editor *term)
 {
 	size_t	index;
 	void	*ret;
@@ -59,7 +59,8 @@ static size_t	send_to_buffer(char *buf, t_interact_str *buffer)
 	ret = &index;
 	while (buf[index] != '\0' && ret != NULL)
 	{
-		ret = add_letter(buffer, buf[index]);
+		ret = add_letter(term->buffer, buf[index]);
+		insert_character(term->term, buf[index]);
 		buf[index] = '\0';
 		index++;
 	}
@@ -151,8 +152,7 @@ int	search_for_sequence(t_line_editor *term)
 			read(term->term->fd, &buf, 1);
 		buf[1] = '\0';
 		left_alone = search_seq(buf, term);
-		ft_putstr_fd(buf, term->term->fd);
-		if (ft_strlen(buf) != send_to_buffer(buf, term->buffer))
+		if (ft_strlen(buf) != send_to_buffer(buf, term))
 			fatal();
 	}
 	return (0);
