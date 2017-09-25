@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/21 19:17:39 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:46:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,25 @@ t_interact_str	*add_letter(t_interact_str *str, char new_letter);
 t_bool			del_letter(t_interact_str *str);
 
 /*
-** Moving inside the string
+** Moving inside the string.
+** These functions always report how many characters they have moved inside the
+** string (which could be less than required if they encounters the begin or the
+** end of the string.
 ** Implementation file : interact_str_move.c
 */
 
 size_t			forward_x_letter(t_interact_str *str, size_t nb_letter);
 size_t			back_x_letter(t_interact_str *str, size_t nb_letter);
+size_t			go_to_first_letter(t_interact_str *str);
+size_t			go_to_last_letter(t_interact_str *str);
 
 /*
 ** Getters
 ** Implementation file : interact_str_get.c
 */
 
-char			get_current_letter(t_interact_str * const str);
-char			*get_full_string(t_interact_str * const str);
-size_t			int_str_get_size(t_interact_str * const str);
+char			get_current_letter(t_interact_str const * str);
+char			*get_full_string(t_interact_str const * str);
+size_t			int_str_get_size(t_interact_str const * str);
 
 #endif

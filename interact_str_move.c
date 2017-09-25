@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:09:10 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 13:09:47 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:32:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ size_t	forward_x_letter(t_interact_str *str, size_t nb_letter)
 		str->current = str->current->after;
 		index++;
 	}
+	str->index += index;
 	return (index);
 }
 
@@ -36,5 +37,26 @@ size_t	back_x_letter(t_interact_str *str, size_t nb_letter)
 		str->current = str->current->before;
 		index++;
 	}
+	str->index -= index;
 	return (index);
+}
+
+size_t	go_to_first_letter(t_interact_str *str)
+{
+	size_t	nb_of_move;
+
+	str->current = str->begin;
+	nb_of_move = str->index;
+	str->index = 0;
+	return (nb_of_move);
+}
+
+size_t	go_to_last_letter(t_interact_str *str)
+{
+	size_t	nb_of_move;
+
+	str->current = str->end;
+	nb_of_move = str->size - str->index;
+	str->index = str->size;
+	return (nb_of_move);
 }

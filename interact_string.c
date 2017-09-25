@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:50:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 13:46:43 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:34:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_interact_str	*create_interact_str(void)
 		new_str->end = new_str->begin;
 		new_str->current = new_str->begin;
 		new_str->size = 0;
+		new_str->index = 0;
 	}
 	return (new_str);
 }
@@ -76,6 +77,7 @@ void			destroy_interact_str(t_interact_str **ptr_to_destroy)
 		to_destroy->end = NULL;
 		to_destroy->current = NULL;
 		to_destroy->size = 0;
+		to_destroy->index = 0;
 		free(to_destroy);
 		*ptr_to_destroy = NULL;
 	}
@@ -94,6 +96,7 @@ t_interact_str	*add_letter(t_interact_str *str, char new_letter)
 		str->current->before->after = new_link;
 	str->current->before = new_link;
 	str->size++;
+	str->index++;
 	return (str);
 }
 
