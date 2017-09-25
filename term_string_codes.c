@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 00:37:12 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:10:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ t_keypad_cmd	*generate_keys_cmd_sequences(void)
 	{
 		while (index < sizeof(key_codes) / sizeof(char*))
 		{
-			key_sequences[index].str = tgetstr(key_codes[index], NULL);
+			if (ft_strequ(key_codes[index], "kb"))
+				key_sequences[index].str = "\177";
+			else
+				key_sequences[index].str = tgetstr(key_codes[index], NULL);
 			key_sequences[index].action = actions[index];
 			index++;
 		}
