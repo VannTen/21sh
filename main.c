@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 20:59:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 10:12:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int main(void)
 	{
 		tcgetattr(STDIN_FILENO, &tty_original);
 		tcgetattr(STDIN_FILENO, &tty_settings);
-		ft_putchar(tty_settings.c_cc[VKILL]);
 		tty_settings.c_lflag &= ~(ICANON | ECHO);
 		tty_settings.c_oflag &= ~(OPOST);
 		tty_settings.c_cc[VMIN] = 1;
