@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:22:11 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 00:23:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:52:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	move_cursor_relatively(t_term_device *term,
 	};
 
 	(void)n_time;
-
 	tputs(term->seq_send[cmd[dir]], 1, term->putchar);
 }
