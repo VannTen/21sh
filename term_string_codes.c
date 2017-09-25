@@ -6,24 +6,17 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 13:10:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:01:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_device_defs.h"
+#include "keys_functions_interface.h"
 #include "libft.h"
 #include <termcap.h>
 #include <stdlib.h>
 
-int	left_arrow(t_line_editor *term);
-int right_arrow(t_line_editor *term);
-int up_arrow(t_line_editor *term);
-int down_arrow(t_line_editor *term);
-int	backspace(t_line_editor *term);
-int	delete(t_line_editor *term);
-int ft_a(t_line_editor *term);
-
-char	**create_cmd_strings(void)
+char			**create_cmd_strings(void)
 {
 	static char				*cap_names[] = {CMD_STRING_PATTERN};
 	enum e_term_string_send	index;
@@ -42,7 +35,7 @@ char	**create_cmd_strings(void)
 	return (cmd_strings);
 }
 
-void	destroy_cmd_strings(char ***cmd_strings)
+void			destroy_cmd_strings(char ***cmd_strings)
 {
 	size_t	index;
 	char	**to_destroy;
@@ -69,7 +62,9 @@ t_keypad_cmd	*generate_keys_cmd_sequences(void)
 		"ku",
 		"kd",
 		"kb",
-		"kD"
+		"kD",
+		"kh",
+		"@7"
 	};
 	static t_term_action	actions[] = {
 		left_arrow,
@@ -77,7 +72,9 @@ t_keypad_cmd	*generate_keys_cmd_sequences(void)
 		up_arrow,
 		down_arrow,
 		backspace,
-		delete
+		delete,
+		home,
+		end
 	};
 	t_keypad_cmd			*key_sequences;
 	size_t					index;

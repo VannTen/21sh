@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:22:11 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 13:52:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:35:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,17 @@ void	move_cursor_relatively(t_term_device *term,
 		CURSOR_LEFT,
 		CURSOR_RIGHT
 	};
+	size_t							times;
 
-	(void)n_time;
-	tputs(term->seq_send[cmd[dir]], 1, term->putchar);
+	times = 0;
+	while (times < n_time)
+	{
+		tputs(term->seq_send[cmd[dir]], 1, term->putchar);
+		times++;
+	}
+}
+
+void	move_begin_line(t_term_device *term)
+{
+	tputs(term->seq_send[BEGIN_LINE], 1, term->putchar);
 }

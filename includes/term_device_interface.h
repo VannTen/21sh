@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 00:31:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:34:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum	e_direction
 
 void	move_cursor_relatively(t_term_device *term,
 		enum e_direction dir, size_t n_time);
+void	move_begin_line(t_term_device *term);
 
 /*
 ** Insertion and deletion of characters
