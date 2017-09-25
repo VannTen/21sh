@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:45:23 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 00:47:59 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 10:18:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	delete(t_line_editor *term)
 
 int backspace(t_line_editor *term)
 {
-	if (left_arrow(term) == 1)
+	if (left_arrow(term) == 0)
 		return (delete(term));
 	return (1);
 
