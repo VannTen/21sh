@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 14:16:05 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:45:40 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:58:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** referencing another function.
 */
 
-static t_bool	match(void const * v_key, va_list args)
+static t_bool	match(void const *v_key, va_list args)
 {
 	const t_key			*key;
 	char				c;
@@ -35,8 +35,8 @@ static t_bool	match(void const * v_key, va_list args)
 	return (!could_be_key(key, index, c));
 }
 
-t_term_action	find_key_sequence(t_term_device const * term, char *buf,
-		size_t	*index)
+t_term_action	find_key_sequence(t_term_device const *term, char *buf,
+		size_t *index)
 {
 	t_lst	*possible_match;
 

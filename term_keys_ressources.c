@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 09:55:17 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 13:08:08 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 19:26:38 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_keys_defs.h"
+#include "libft.h"
 #include <termcap.h>
 #include <stdlib.h>
 
@@ -24,12 +25,13 @@ t_key	*generate_term_keys(void)
 	t_key					*key_sequences;
 	size_t					index;
 
+	ASSERT(ARRAY_LENGTH(key_codes) == ARRAY_LENGTH(actions));
 	index = 0;
-	key_sequences = malloc((sizeof(key_codes) / sizeof(char*) + 1)
+	key_sequences = malloc((ARRAY_LENGTH(key_codes) + 1)
 			* sizeof(t_key));
 	if (key_sequences != NULL)
 	{
-		while (index < sizeof(key_codes) / sizeof(char*))
+		while (index < ARRAY_LENGTH(key_codes))
 		{
 #ifndef NO_TEST
 			if (key_codes_over[index] != NULL)

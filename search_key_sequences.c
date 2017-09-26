@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:43:47 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:57:17 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static size_t	send_to_buffer(char *buf, t_line_editor *term, size_t nb_char)
 	return (ret != NULL ? index : index - 1);
 }
 
-t_bool		is_validated(t_line_editor *buf)
+t_bool			is_validated(t_line_editor *buf)
 {
 	return (get_current_letter(buf->buffer) == '\n' ||
 			int_str_get_size(buf->buffer) > 20);
 }
 
-int	search_for_sequence(t_line_editor *term)
+int				search_for_sequence(t_line_editor *term)
 {
 	char			buf[10];
 	size_t			index;
@@ -65,4 +65,3 @@ int	search_for_sequence(t_line_editor *term)
 	}
 	return (0);
 }
-

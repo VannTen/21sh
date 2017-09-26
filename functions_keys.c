@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:12:30 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 12:42:27 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:50:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ int	delete(t_line_editor *term)
 	return (1);
 }
 
-int backspace(t_line_editor *term)
+int	backspace(t_line_editor *term)
 {
 	if (left_arrow(term) == 0)
 		return (delete(term));
 	return (1);
-
 }
 
 int	home(t_line_editor *term)

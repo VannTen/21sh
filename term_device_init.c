@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 18:45:12 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:50:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	cust_putchar(int c)
+static int		cust_putchar(int c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
 }

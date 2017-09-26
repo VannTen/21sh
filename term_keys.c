@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:05:32 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:46:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:59:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ t_term_action	read_full_key(t_key const *key,
 {
 	while (key->str[*index + 1] != '\0'
 			&& read_another(fd, buf, index)
-			&& could_be_key(key, *index, buf[*index])
-			)
+			&& could_be_key(key, *index, buf[*index]))
 	{
 	}
 	if (ft_strequ(key->str, buf))
@@ -53,7 +52,7 @@ t_bool			could_be_key(t_key const *key, size_t index, int c)
 	return (key->str[index] == c);
 }
 
-t_term_action	get_key_action(t_key const * key)
+t_term_action	get_key_action(t_key const *key)
 {
 	return (key->action);
 }

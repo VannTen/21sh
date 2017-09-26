@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:38:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 16:05:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:55:19 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,15 @@ struct	s_interact_str
 	size_t				size;
 	size_t				index;
 };
+
+/*
+** Internal ressources management
+** Implemenation file : interact_str_ressources.c
+*/
+
+t_str_link		*create_str_link(char letter,
+		t_str_link *before,
+		t_str_link *after);
+void			destroy_str_link(t_str_link **link);
 
 #endif

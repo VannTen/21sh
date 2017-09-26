@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/26 17:33:08 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/26 17:55:49 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC :=\
 	interact_str_get.c\
 	interact_str_move.c\
 	interact_string.c\
+	interact_str_ressources.c\
 	line_editor.c\
 	main.c\
 	search_key_sequences.c\

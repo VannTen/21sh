@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 16:46:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:56:40 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_interact_str	t_interact_str;
 
 /*
 ** Create, destroy
+** Implementation file : interact_str_ressources.c
 */
 
 t_interact_str	*create_interact_str(void);
@@ -29,6 +30,7 @@ void			destroy_interact_str(t_interact_str** to_destroy);
 
 /*
 ** Add and delete letter to the string
+** Implementation file : interact_string.c
 */
 
 t_interact_str	*add_letter(t_interact_str *str, char new_letter);
