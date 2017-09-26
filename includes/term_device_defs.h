@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 18:44:22 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 12:39:13 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ enum	e_term_string_send
 	DELETE_CHAR,
 	EXIT_DELETE,
 	BEGIN_LINE,
+	RING_BELL,
 	NB_TERM_STRING
 };
 
@@ -57,7 +58,8 @@ enum	e_term_string_send
 	"dm",\
 	"dc",\
 	"ec",\
-	"cr",
+	"cr",\
+	"bl"
 
 /*
 ** Internal ressources management of termcaps strings

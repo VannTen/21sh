@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/26 10:14:10 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/26 12:39:32 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC :=\
 	ft_arrow_keys.c\
 	term_device_init.c\
 	term_device_get.c\
+	term_device_actions.c\
 	term_string_codes.c\
 	term_keys.c\
 	term_keys_ressources.c\

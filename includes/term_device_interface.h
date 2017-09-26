@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 10:16:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 13:10:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	move_begin_line(t_term_device *term);
 
 void	insert_character(t_term_device *term, char c);
 void	suppress_character(t_term_device *term);
+
+/*
+** Various actions of the terminal
+** Implementation file : term_device_actions.c
+*/
+
+void	ring_audible_bell(t_term_device *term);
 
 /*
 ** Getters

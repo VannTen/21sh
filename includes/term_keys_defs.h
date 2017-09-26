@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:26:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 10:00:09 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 13:12:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,20 @@ struct	s_key
 		"kb",\
 		"kD",\
 		"kh",\
-		"@7"
+		"@7",\
+		"kN"
+# ifndef NO_TEST
+# define KEY_CODES_OVERRIDE\
+		NULL,\
+		NULL,\
+		NULL,\
+		NULL,\
+		"\177",\
+		NULL,\
+		NULL,\
+		NULL,\
+		"aaa"
+# endif
 # define KEY_ACTIONS_INIT\
 		left_arrow,\
 		right_arrow,\
@@ -38,5 +51,6 @@ struct	s_key
 		backspace,\
 		delete,\
 		home,\
-		end
+		end,\
+		bad_key
 #endif
