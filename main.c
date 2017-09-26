@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 10:12:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 14:01:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 
 char PC;
 
+char	*test()
+{
+	static char	buf[10];
+
+	read(STDIN_FILENO, &buf, 1);
+	buf[1] = '\0';
+	ft_printf("%d\n%s", (int)buf[0], tgetstr("kb", NULL));
+	ft_printf("%d\n%s : %zu\n", (int)buf[0], tgetstr("kb", NULL),
+			ft_strlen(tgetstr("kb", NULL)));
+	return (buf);
+}
 int	fta_putchar(int c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
@@ -42,7 +53,7 @@ int main(void)
 	{
 		tcgetattr(STDIN_FILENO, &tty_original);
 		tcgetattr(STDIN_FILENO, &tty_settings);
-		tty_settings.c_lflag &= ~(ICANON | ECHO);
+		tty_settings.c_lflag &= ~(ICANON | ECHO | ECHOE | ALTWERASE);
 		tty_settings.c_oflag &= ~(OPOST);
 		tty_settings.c_cc[VMIN] = 1;
 		tty_settings.c_cc[VTIME] = 0;
@@ -55,6 +66,7 @@ int main(void)
 		cmd = tgetstr("ks", NULL);
 		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
 		result = term_act();
+		//result = test();
 		cmd = tgetstr("ke", NULL);
 		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_original);

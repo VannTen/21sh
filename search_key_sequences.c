@@ -6,13 +6,14 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/24 20:55:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 10:29:53 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_device_defs.h"
 #include "term_actions_defs.h"
 #include "interactive_string_interface.h"
+#include "term_keys_interface.h"
 #include "libft.h"
 #include <stdarg.h>
 #include <sys/types.h>
@@ -22,32 +23,28 @@
 
 # define MAX_SEQ_LENGHT 10
 
-t_lst	*populate_stack(t_keypad_cmd *sequences, char c)
-{
-	size_t	index;
-	t_lst	*stack;
+/*
+** Keep those
+*/
 
-	index = 0;
-	stack = NULL;
-	while (sequences[index].str != NULL)
+char			consume_one_sequence(t_key const *key, char *buf, size_t index,
+		t_line_editor *buffer)
+{
+	char	left_alone;
+
+	index = read_full_key(key, get_fd(buffer->term), buf, index);
+	if (index == 0)
 	{
-		if (sequences[index].str[0] == c)
-			f_lstpush(sequences + index, &stack);
-		index++;
+		get_key_action(key)(buffer);
+		ft_strclr(buf);
+		left_alone = '\0';
 	}
-	return (stack);
-}
-
-static t_bool	match(const void *v_sequence, va_list args)
-{
-	const t_keypad_cmd	*sequence;
-	char				c;
-	size_t				index;
-
-	sequence = v_sequence;
-	index = va_arg(args, size_t);
-	c = va_arg(args, int);
-	return (sequence->str[index] != c);
+	else
+	{
+		left_alone = buf[index - 1];
+		buf[index - 1] = '\0';
+	}
+	return (left_alone);
 }
 
 static size_t	send_to_buffer(char *buf, t_line_editor *term)
@@ -67,36 +64,27 @@ static size_t	send_to_buffer(char *buf, t_line_editor *term)
 	return (ret != NULL ? index : index - 1);
 }
 
-char			consume_one_sequence(t_keypad_cmd *seq, char *buf, size_t index,
-		t_line_editor *buffer)
-{
-	size_t	seq_size;
-	char	left_alone;
-	int		ret;
+/*
+** Term device side
+*/
 
-	seq_size = ft_strlen(seq->str);
-	while (index < seq_size && ft_strequ_short(seq->str, buf))
-	{
-		ret = read(buffer->term->fd, buf + index, 1);
-		index++;
-		buf[index] = '\0';
-		if (ret == -1)
-			fatal();
-		else if (ret == 0)
-			return ('\0');
-	}
-	if (ft_strequ(seq->str, buf))
-	{
-		seq->action(buffer);
-		ft_strclr(buf);
-		left_alone = '\0';
-	}
-	else
-	{
-		left_alone = buf[index - 1];
-		buf[index - 1] = '\0';
-	}
-	return (left_alone);
+/*
+** This function only purpose is to be a relay suitable for f_lstremoveif_va,
+** which is why it is declared static (it won't be use anywhere else) and simply
+** referencing another function (though that one is not used for anything else
+** at the time this comment is written
+*/
+
+static t_bool	match(void const * v_key, va_list args)
+{
+	const t_key			*key;
+	char				c;
+	size_t				index;
+
+	key = v_key;
+	index = va_arg(args, size_t);
+	c = va_arg(args, int);
+	return (!could_be_key(key, index, c));
 }
 
 char			search_seq(char *buf, t_line_editor *buffer)
@@ -127,16 +115,11 @@ char			search_seq(char *buf, t_line_editor *buffer)
 		return ('\0');
 }
 
-/*
-** Keep those
-*/
-
 t_bool		is_validated(t_line_editor *buf)
 {
 	return (get_current_letter(buf->buffer) == '\n' ||
 			int_str_get_size(buf->buffer) > 20);
 }
-
 
 int	search_for_sequence(t_line_editor *term)
 {
@@ -157,3 +140,4 @@ int	search_for_sequence(t_line_editor *term)
 	}
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 00:09:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 18:45:12 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ t_term_device	*create_term_device(int fd)
 	if (new != NULL)
 	{
 		new->fd = fd;
-		new->keys_cmd = generate_keys_cmd_sequences();
+		new->keys_cmd = generate_term_keys();
 		new->seq_send = create_cmd_strings();
-		new->cursor.x = tgetnum("li");
-		new->cursor.y = tgetnum("co");
 		new->putchar = cust_putchar;
 	}
 	return (new);
@@ -46,10 +44,8 @@ void			destroy_term_device(t_term_device **term)
 	if (to_destroy != NULL)
 	{
 		to_destroy->fd = 0;
-		destroy_keys_cmd_sequences(&to_destroy->keys_cmd);
+		destroy_term_keys(&to_destroy->keys_cmd);
 		destroy_cmd_strings(&to_destroy->seq_send);
-		to_destroy->cursor.x = 0;
-		to_destroy->cursor.y = 0;
 		free(to_destroy);
 		*term = NULL;
 	}

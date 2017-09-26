@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 16:06:35 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 16:01:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/25 18:33:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,69 +51,5 @@ void			destroy_cmd_strings(char ***cmd_strings)
 		}
 		free(to_destroy);
 		*cmd_strings = NULL;
-	}
-}
-
-t_keypad_cmd	*generate_keys_cmd_sequences(void)
-{
-	static char				*key_codes[] = {
-		"kl",
-		"kr",
-		"ku",
-		"kd",
-		"kb",
-		"kD",
-		"kh",
-		"@7"
-	};
-	static t_term_action	actions[] = {
-		left_arrow,
-		right_arrow,
-		up_arrow,
-		down_arrow,
-		backspace,
-		delete,
-		home,
-		end
-	};
-	t_keypad_cmd			*key_sequences;
-	size_t					index;
-
-	index = 0;
-	key_sequences = malloc((sizeof(key_codes) / sizeof(char*) + 1)
-			* sizeof(t_keypad_cmd));
-	if (key_sequences != NULL)
-	{
-		while (index < sizeof(key_codes) / sizeof(char*))
-		{
-			if (ft_strequ(key_codes[index], "kb"))
-				key_sequences[index].str = "\177";
-			else
-				key_sequences[index].str = tgetstr(key_codes[index], NULL);
-			key_sequences[index].action = actions[index];
-			index++;
-		}
-		key_sequences[index].str = NULL;
-	}
-	return (key_sequences);
-}
-
-void			destroy_keys_cmd_sequences(t_keypad_cmd **sequences)
-{
-	size_t			index;
-	t_keypad_cmd	*to_destroy;
-
-	to_destroy = *sequences;
-	if (to_destroy != NULL)
-	{
-		index = 0;
-		while (to_destroy[index].str != NULL)
-		{
-			to_destroy[index].str = NULL;
-			to_destroy[index].action = NULL;
-			index++;
-		}
-		free(to_destroy);
-		*sequences = NULL;
 	}
 }

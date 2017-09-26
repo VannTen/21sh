@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 17:34:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 10:16:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stddef.h>
 
 typedef struct s_term_device	t_term_device;
-typedef struct s_keypad_cmd		t_keypad_cmd;
 
 
 /*
@@ -56,5 +55,12 @@ void	move_begin_line(t_term_device *term);
 
 void	insert_character(t_term_device *term, char c);
 void	suppress_character(t_term_device *term);
+
+/*
+** Getters
+** Implementation file : term_device_get.c
+*/
+
+int		get_fd(t_term_device const * term);
 
 #endif
