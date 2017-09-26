@@ -6,16 +6,16 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 13:10:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 14:25:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TERM_DEVICE_INTERFACE_H
 # define TERM_DEVICE_INTERFACE_H
+# include "term_keys_interface.h"
 # include <stddef.h>
 
 typedef struct s_term_device	t_term_device;
-
 
 /*
 ** Ressources management
@@ -69,5 +69,13 @@ void	ring_audible_bell(t_term_device *term);
 */
 
 int		get_fd(t_term_device const * term);
+
+/*
+** Processing terminal input
+** Implementation file : term_device_input.c
+*/
+
+t_term_action	find_key_sequence(t_term_device const * buffer, char *buf,
+		size_t	*index);
 
 #endif
