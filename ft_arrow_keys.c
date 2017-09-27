@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "term_actions_defs.h"
+#include "line_editor_defs.h"
 #include "term_device_interface.h"
 #include "interactive_string_interface.h"
 #include "libft.h"

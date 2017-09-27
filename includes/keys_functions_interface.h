@@ -12,7 +12,7 @@
 
 #ifndef KEYS_FUNCTIONS_INTERFACE_H
 # define KEYS_FUNCTIONS_INTERFACE_H
-# include "term_actions_interface.h"
+# include "line_editor_interface.h"
 
 /*
 ** This interface file declares all of the function which are to be used when

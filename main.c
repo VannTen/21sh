@@ -16,7 +16,7 @@
 #include <termcap.h>
 #include <unistd.h>
 #include <termios.h>
-#include "term_actions_interface.h"
+#include "line_editor_interface.h"
 #include "libft.h"
 
 char PC;

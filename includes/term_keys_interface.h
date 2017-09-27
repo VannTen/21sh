@@ -12,7 +12,7 @@
 
 #ifndef TERM_KEYS_INTERFACE_H
 # define TERM_KEYS_INTERFACE_H
-# include "term_actions_interface.h"
+# include "line_editor_interface.h"
 # include "libft.h"
 # include <stddef.h>
 

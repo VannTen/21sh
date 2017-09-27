@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_actions_defs.h                                :+:      :+:    :+:   */
+/*   line_editor_interface.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/11 13:26:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 12:11:16 by mgautier         ###   ########.fr       */
+/*   Created: 2017/09/11 11:04:55 by mgautier          #+#    #+#             */
+/*   Updated: 2017/09/27 10:01:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TERM_ACTIONS_DEFS_H
-# define TERM_ACTIONS_DEFS_H
-# include "term_actions_interface.h"
-# include "interactive_string_interface.h"
-# include "term_device_interface.h"
+#ifndef LINE_EDITOR_INTERFACE_H
+# define LINE_EDITOR_INTERFACE_H
 
-struct	s_line_editor
-{
-	t_interact_str	*buffer;
-	t_term_device	*term;
-};
+typedef struct s_line_editor	t_line_editor;
+
+/*
+** Line editor interface
+** Implementation file : line_editor.c
+*/
+
+t_line_editor	*create_line_editor(int fd);
+void			destroy_line_editor(t_line_editor**);
+
+/*
+** Others
+*/
+
+char			*term_act(void);
+int				search_for_sequence(t_line_editor *term);
 
 #endif

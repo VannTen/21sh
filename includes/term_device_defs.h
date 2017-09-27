@@ -13,7 +13,7 @@
 #ifndef TERM_DEVICE_DEFS_H
 # define TERM_DEVICE_DEFS_H
 # include "term_device_interface.h"
-# include "term_actions_interface.h"
+# include "line_editor_interface.h"
 # include "term_keys_interface.h"
 
 struct	s_term_device

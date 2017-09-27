@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "keys_functions_defs.h"
-#include "term_actions_defs.h"
+#include "line_editor_defs.h"
 #include "term_device_interface.h"
 
 int	delete(t_line_editor *term)
