@@ -6,71 +6,44 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:50:12 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/11 10:30:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:57:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libstd.h>
 #include "interactive_string_defs.h"
+#include "libft.h"
 
-t_interact_str	*create_interact_str(void)
+t_interact_str	*add_letter(t_interact_str *str, char new_letter)
 {
-	t_interact_str	*new_str;
+	t_str_link	*new_link;
 
-	new_str = malloc(sizeof(t_interact_str));
-	if (new_str != NULL)
-	{
-		new_str->begin = NULL;
-		new_str->end = NULL;
-		new_str->current = NULL;
-	}
-	return (new_str);
+	new_link = create_str_link(new_letter, str->current->before, str->current);
+	if (new_link == NULL)
+		return (NULL);
+	if (str->current == str->begin)
+		str->begin = new_link;
+	else
+		str->current->before->after = new_link;
+	str->current->before = new_link;
+	str->size++;
+	str->index++;
+	return (str);
 }
 
-static struct s_str_link	*create_str_link(char letter,
-		t_str_link const *before,
-		t_str_link const *after)
+t_bool			del_letter(t_interact_str *str)
 {
-	struct s_str_link	*new_letter;
+	t_str_link	*tmp;
 
-	new_letter = malloc(sizeof(struct s_str_link));
-	if (new_letter != NULL)
-	{
-		new_letter->letter = letter;
-		new_letter->before = before;
-		new_letter->after = after;
-	}
-	return (new_letter);
-}
-
-static void		destroy_str_link(struct	s_str_link *link)
-{
-	link->before = NULL;
-	link->after = NULL;
-	link->letter = '\0';
-	free(link);
-}
-
-void			destroy_interact_str(t_interact_str **ptr_to_destroy)
-{
-	t_interact_str		*to_destroy;
-	struct s_str_link	*current_letter;
-	struct s_str_link	*next_letter;
-
-	if (ptr_to_destroy != NULL)
-	{
-		to_destroy = *ptr_to_destroy;
-		next_letter = to_destroy->begin;
-		while (next_letter != NULL)
-		{
-			current_letter = next_letter;
-			next_letter = next_letter->after;
-			destroy_str_link(current_letter);
-		}
-		to_destroy->begin = NULL;
-		to_destroy->end = NULL;
-		to_destroy->current = NULL;
-		free(to_destroy);
-		*ptr_to_destroy = NULL;
-	}
+	if (str->current == str->end)
+		return (FALSE);
+	if (str->current == str->begin)
+		str->begin = str->current->after;
+	str->current->after->before = str->current->before;
+	if (str->current->before != NULL)
+		str->current->before->after = str->current->after;
+	tmp = str->current;
+	str->current = str->current->after;
+	destroy_str_link(&tmp);
+	str->size--;
+	return (TRUE);
 }
