@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:09:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 13:13:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:14:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,12 @@ int	delete(t_line_editor *term);
 int	home(t_line_editor *term);
 int	end(t_line_editor *term);
 int	bad_key(t_line_editor *term);
+
+/*
+** Again, some other keys
+** Implementation file : proceed_key.c
+*/
+
+int	enter_key(t_line_editor *term);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 10:58:22 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 14:45:41 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 #include "libft.h"
 #include <unistd.h>
 
+/*
+** The last character of buf should only be sent if there is more than one
+** character, otherwise, it should be saved. So if the index is 0 (= only one
+** character present), increment it to 1 to consume that character
+*/
+
 static size_t	send_to_buffer(char *buf, t_line_editor *term, size_t nb_char)
 {
 	size_t	index;
 	void	*ret;
 
 	index = 0;
+	if (nb_char == 0)
+		nb_char++;
 	ret = &index;
-	while (index <= nb_char && ret != NULL)
+	while (index < nb_char && ret != NULL)
 	{
 		ret = add_letter(term->buffer, buf[index]);
 		insert_character(term->term, buf[index]);
@@ -33,12 +41,6 @@ static size_t	send_to_buffer(char *buf, t_line_editor *term, size_t nb_char)
 	if (buf[index] != '\0')
 		buf[0] = buf[index];
 	return (ret != NULL ? index : index - 1);
-}
-
-t_bool			is_validated(t_line_editor *buf)
-{
-	return (get_current_letter(buf->buffer) == '\n' ||
-			int_str_get_size(buf->buffer) > 20);
 }
 
 /*

@@ -6,12 +6,13 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:58:27 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:49:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:46:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interactive_string_defs.h"
 #include "libft.h"
+#include <stddef.h>
 
 char	get_current_letter(t_interact_str const *str)
 {
@@ -42,4 +43,9 @@ char	*get_full_string(t_interact_str const *str)
 size_t	int_str_get_size(t_interact_str const *str)
 {
 	return (str->size);
+}
+
+t_bool	is_valid_line(t_interact_str const *str)
+{
+	return (str->is_valid_line || str->size > 20);
 }

@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 17:52:06 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:01:16 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 11:43:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "interactive_string_defs.h"
+#include "libft.h"
 #include <stdlib.h>
 
 t_str_link		*create_str_link(char letter,
@@ -53,6 +54,7 @@ t_interact_str	*create_interact_str(void)
 		new_str->current = new_str->begin;
 		new_str->size = 0;
 		new_str->index = 0;
+		new_str->is_valid_line = FALSE;
 	}
 	return (new_str);
 }
@@ -78,6 +80,7 @@ void			destroy_interact_str(t_interact_str **ptr_to_destroy)
 		to_destroy->current = NULL;
 		to_destroy->size = 0;
 		to_destroy->index = 0;
+		to_destroy->is_valid_line = FALSE;
 		free(to_destroy);
 		*ptr_to_destroy = NULL;
 	}

@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/26 17:55:49 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/27 11:27:56 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,16 @@ SRC :=\
 	term_keys.c\
 	term_keys_ressources.c\
 	functions_keys.c\
+	control_keys.c\
 	term_insert_del.c\
 	cursor_movement.c\
+	interact_str_modif_state.c\
 	interact_str_get.c\
 	interact_str_move.c\
 	interact_string.c\
 	interact_str_ressources.c\
-	line_editor.c\
+	line_editor_ressources.c\
+	line_editor_checks.c\
 	main.c\
 	search_key_sequences.c\
 	term_actions.c

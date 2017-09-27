@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:26:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 10:32:09 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 14:31:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,19 @@ struct	s_key
 		"kD",\
 		"kh",\
 		"@7",\
-		"kN"
+		"kN",\
+		"@8"
+
+/*
+** This if a temporary workaround for capabilites that are not working as
+** expected, for unknown reasons (to me). Either it is a termios settings or
+** something else. Will look into it when relevant
+** "kb" : backspace, terminfo send "^M" string, Iterm actuallys sends "\177"
+** (del characacter)
+** "@8" (kent) : entry/send key. Terminfo entry is "\EOM", Iterm2 send simply a
+** newline
+*/
+
 # ifndef NO_TEST
 #  define KEY_CODES_OVERRIDE\
 		NULL,\
@@ -41,7 +53,8 @@ struct	s_key
 		NULL,\
 		NULL,\
 		NULL,\
-		"aaa"
+		"aaa",\
+		"\n"
 # endif
 # define KEY_ACTIONS_INIT\
 		left_arrow,\
@@ -52,5 +65,6 @@ struct	s_key
 		delete,\
 		home,\
 		end,\
-		bad_key
+		bad_key,\
+		enter_key,
 #endif
