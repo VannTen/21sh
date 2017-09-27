@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_actions_defs.h                                :+:      :+:    :+:   */
+/*   term_device_actions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/11 13:26:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/23 12:11:16 by mgautier         ###   ########.fr       */
+/*   Created: 2017/09/26 12:29:30 by mgautier          #+#    #+#             */
+/*   Updated: 2017/09/26 12:38:45 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TERM_ACTIONS_DEFS_H
-# define TERM_ACTIONS_DEFS_H
-# include "term_actions_interface.h"
-# include "interactive_string_interface.h"
-# include "term_device_interface.h"
+#include "term_device_defs.h"
+#include <termcap.h>
 
-struct	s_line_editor
+void	ring_audible_bell(t_term_device *term)
 {
-	t_interact_str	*buffer;
-	t_term_device	*term;
-};
-
-#endif
+	tputs(term->seq_send[RING_BELL], 1, term->putchar);
+}

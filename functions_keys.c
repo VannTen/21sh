@@ -6,12 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:12:30 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 17:37:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:50:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys_functions_defs.h"
-#include "term_actions_defs.h"
+#include "line_editor_defs.h"
 #include "term_device_interface.h"
 
 int	delete(t_line_editor *term)
@@ -24,12 +24,11 @@ int	delete(t_line_editor *term)
 	return (1);
 }
 
-int backspace(t_line_editor *term)
+int	backspace(t_line_editor *term)
 {
 	if (left_arrow(term) == 0)
 		return (delete(term));
 	return (1);
-
 }
 
 int	home(t_line_editor *term)
@@ -44,4 +43,10 @@ int	end(t_line_editor *term)
 	move_cursor_relatively(term->term, GO_RIGHT,
 			go_to_last_letter(term->buffer));
 	return (0);
+}
+
+int	bad_key(t_line_editor *term)
+{
+	ring_audible_bell(term->term);
+	return (1);
 }

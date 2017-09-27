@@ -6,11 +6,11 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:45:23 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 15:27:35 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/26 17:50:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "term_actions_defs.h"
+#include "line_editor_defs.h"
 #include "term_device_interface.h"
 #include "interactive_string_interface.h"
 #include "libft.h"
@@ -44,13 +44,4 @@ int	down_arrow(t_line_editor *term)
 {
 	(void)term;
 	return (ft_printf("\ndown arrow\n"));
-}
-
-int	ft_a(t_line_editor *term)
-{
-	(void)term;
-
-	ft_putstr("Triple A");
-
-	return (0);
 }

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cursor_defs.h                                      :+:      :+:    :+:   */
+/*   term_device_get.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 19:25:04 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 10:14:00 by mgautier         ###   ########.fr       */
+/*   Created: 2017/09/26 10:08:08 by mgautier          #+#    #+#             */
+/*   Updated: 2017/09/26 10:08:51 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURSOR_DEFS_H
-# define CURSOR_DEFS_H
-# include "cursor_interface.h"
+#include "term_device_defs.h"
 
-#endif
+int		get_fd(t_term_device const *term)
+{
+	return (term->fd);
+}
