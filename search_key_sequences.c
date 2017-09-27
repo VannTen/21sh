@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:57:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:58:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,31 @@ t_bool			is_validated(t_line_editor *buf)
 	return (get_current_letter(buf->buffer) == '\n' ||
 			int_str_get_size(buf->buffer) > 20);
 }
+
+/*
+** search_for_sequence
+**
+** This function works this way :.
+** It has an initial state where buf is empty (= the empty string), or contain
+** one initial character.
+** This slate translate into buf containing one character with a conditionnal.
+** If there is matches for the first character read (there is some sequences
+** which start with that character) the subroutines request more characters,
+** storing them in buf, and using index to keep track.
+** If a match is found, the corresping action is taken.
+** If not, the characters are litterals, and send as so to the buffer, EXCEPT
+** for the last one : indeed, it is the only one who do not match (it would have
+** stopped before if not), but it could be part of another sequence.
+** When the re
+** This method avoids assumptions about the searched sequences, other than none
+** is a subsequence of another.
+**
+** TODO : Add a timeout on sequence searching, aka, if part of a sequence is
+** readed, but there is some interval before the continuation, it is in fact not
+** a sequence. This could be accomplished with VMIN and VTIME settings in
+** termios, but it could be tricky : there could be some overhead to relaunch a
+** read every time it expires until the user type something.
+*/
 
 int				search_for_sequence(t_line_editor *term)
 {
