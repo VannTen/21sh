@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 14:01:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 14:47:44 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ int main(void)
 	{
 		tcgetattr(STDIN_FILENO, &tty_original);
 		tcgetattr(STDIN_FILENO, &tty_settings);
-		tty_settings.c_lflag &= ~(ICANON | ECHO | ECHOE | ALTWERASE);
+		tty_settings.c_lflag &=
+			~(ICANON | ECHO | IEXTEN);
+		tty_settings.c_iflag &=
+			~(BRKINT | INPCK | ISTRIP | IXON);
 		tty_settings.c_oflag &= ~(OPOST);
+		tty_settings.c_cflag &= ~(CSIZE | PARENB);
+		tty_settings.c_cflag |= CS8;
 		tty_settings.c_cc[VMIN] = 1;
 		tty_settings.c_cc[VTIME] = 0;
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_settings);
