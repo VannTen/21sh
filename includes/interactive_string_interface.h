@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:45:31 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 18:45:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,12 @@ t_bool			is_valid_line(t_interact_str const *str);
 */
 
 int				validate_line(t_interact_str *str);
+
+/*
+** Performs checks on the string
+** Implementation file : interact_str_check.c
+*/
+
+int				int_str_state_of_quote(t_interact_str const *str);
 
 #endif
