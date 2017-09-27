@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:28:05 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 11:52:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:35:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			destroy_term_keys(t_key **sequences);
 
 t_term_action	read_full_key(t_key const *str,
 		int fd, char *buf, size_t *index);
-t_term_action	get_key_action(t_key const * key);
+t_term_action	get_key_action(t_key const *key);
 t_lst			*populate_stack(t_key *sequences, char c);
 t_bool			could_be_key(t_key const *key, size_t index, int c);
 

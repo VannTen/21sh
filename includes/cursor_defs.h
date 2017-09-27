@@ -6,13 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:25:04 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/21 19:25:52 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:14:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURSOR_DEFS_H
 # define CURSOR_DEFS_H
 # include "cursor_interface.h"
-
 
 #endif

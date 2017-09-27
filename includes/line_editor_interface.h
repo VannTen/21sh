@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:04:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 10:01:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:15:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_line_editor	t_line_editor;
 */
 
 t_line_editor	*create_line_editor(int fd);
-void			destroy_line_editor(t_line_editor**);
+void			destroy_line_editor(t_line_editor **line_editor);
 
 /*
 ** Others

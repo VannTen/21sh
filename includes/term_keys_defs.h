@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:26:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 13:12:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:32:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct	s_key
 		"@7",\
 		"kN"
 # ifndef NO_TEST
-# define KEY_CODES_OVERRIDE\
+#  define KEY_CODES_OVERRIDE\
 		NULL,\
 		NULL,\
 		NULL,\

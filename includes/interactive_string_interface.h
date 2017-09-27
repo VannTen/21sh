@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:56:40 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:16:02 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_interact_str	t_interact_str;
 */
 
 t_interact_str	*create_interact_str(void);
-void			destroy_interact_str(t_interact_str** to_destroy);
+void			destroy_interact_str(t_interact_str **to_destroy);
 
 /*
 ** Add and delete letter to the string
@@ -54,8 +54,8 @@ size_t			go_to_last_letter(t_interact_str *str);
 ** Implementation file : interact_str_get.c
 */
 
-char			get_current_letter(t_interact_str const * str);
-char			*get_full_string(t_interact_str const * str);
-size_t			int_str_get_size(t_interact_str const * str);
+char			get_current_letter(t_interact_str const *str);
+char			*get_full_string(t_interact_str const *str);
+size_t			int_str_get_size(t_interact_str const *str);
 
 #endif

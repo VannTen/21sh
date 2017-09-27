@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:38:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:55:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 10:37:13 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 typedef struct s_str_link	t_str_link;
 
-struct	s_str_link
+struct		s_str_link
 {
 	struct s_str_link	*before;
 	struct s_str_link	*after;
 	char				letter;
 };
 
-struct	s_interact_str
+struct		s_interact_str
 {
 	struct s_str_link	*begin;
 	struct s_str_link	*end;
@@ -37,9 +37,9 @@ struct	s_interact_str
 ** Implemenation file : interact_str_ressources.c
 */
 
-t_str_link		*create_str_link(char letter,
+t_str_link	*create_str_link(char letter,
 		t_str_link *before,
 		t_str_link *after);
-void			destroy_str_link(t_str_link **link);
+void		destroy_str_link(t_str_link **link);
 
 #endif
