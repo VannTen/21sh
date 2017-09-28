@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/27 11:27:56 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/27 17:52:17 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC :=\
 	term_insert_del.c\
 	cursor_movement.c\
 	interact_str_modif_state.c\
+	interact_str_check.c\
 	interact_str_get.c\
 	interact_str_move.c\
 	interact_string.c\

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 14:47:44 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/27 18:46:35 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int main(void)
 		cmd = tgetstr("ke", NULL);
 		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
 		tcsetattr(STDIN_FILENO, TCSANOW, &tty_original);
-		ft_printf("\nResult :\n\"%s\"\n", result);
+		ft_printf("\nResult :\n[[[%s]]]\n%d", result,
+				state_of_quote(result, "\"'"));
+
 	}
 	else
 	{

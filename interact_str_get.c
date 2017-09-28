@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:58:27 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:46:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 11:21:02 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ size_t	int_str_get_size(t_interact_str const *str)
 
 t_bool	is_valid_line(t_interact_str const *str)
 {
-	return (str->is_valid_line || str->size > 20);
+	return (str->is_valid_line);
 }

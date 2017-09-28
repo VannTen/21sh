@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:22:11 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/25 17:35:28 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 11:53:32 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include "libft.h"
 #include <termcap.h>
 #include <unistd.h>
+
+/*
+** TODO:
+**
+** For vertical motion, use something else than the "do" and "up" capabilities if
+** on the bottom or top off the screen (bottom is probably more of a concern in
+** our case. According to termcap manual, that could cause undefined behavior.
+** It is unclear in the terminfo manual if this is still the case, but better
+** safe than sorry
+*/
 
 void	move_cursor_relatively(t_term_device *term,
 		enum e_direction dir, size_t n_time)

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:45:31 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 11:29:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void			destroy_interact_str(t_interact_str **to_destroy);
 /*
 ** Add and delete letter to the string
 ** Implementation file : interact_string.c
+**
+** add_letter : return str on success, NULL on failure.
 */
 
 t_interact_str	*add_letter(t_interact_str *str, char new_letter);
@@ -66,5 +68,13 @@ t_bool			is_valid_line(t_interact_str const *str);
 */
 
 int				validate_line(t_interact_str *str);
+
+/*
+** Performs checks on the string
+** Implementation file : interact_str_check.c
+*/
+
+int				int_str_state_of_quote(t_interact_str const *str,
+		char const *quote_chars);
 
 #endif
