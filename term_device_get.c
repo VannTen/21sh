@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 10:08:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 15:02:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:44:12 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@ int		get_fd(t_term_device const *term)
 
 unsigned short	get_nb_column(t_term_device const *term)
 {
-	return (term->dimensions.ws_col);
+	if (term->flags[EAT_NEWLINE_GLITCH])
+		return (term->dimensions.ws_col - 1);
+	else
+		return (term->dimensions.ws_col);
 }

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:26:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 16:48:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:14:36 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define TERM_KEYS_DEFS_H
 # include "term_keys_interface.h"
 # include "keys_functions_interface.h"
+
+/*
+** That header list all the key recognized by the application, the function
+** which should be invoked when that key is recognized.
+*/
 
 struct	s_key
 {

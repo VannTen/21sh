@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:45:23 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 16:23:12 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:00:40 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,7 @@ int	right_arrow(t_line_editor *term)
 {
 	if (forward_x_letter(term->buffer, 1) != 0)
 	{
-		if (would_go_beyond_edge(term, RIGHT, 1))
-		{
-			move_cursor_relatively(term->term, GO_DOWN, 1);
-			move_begin_line(term->term);
-		ft_printf("Error");
-		}
-		else
+		if (!check_wrap_and_do(term))
 			move_cursor_relatively(term->term, GO_RIGHT, 1);
 	}
 	return (0);

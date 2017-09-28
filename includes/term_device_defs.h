@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 14:23:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:34:21 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ struct	s_term_device
 	int				fd;
 	t_key			*keys_cmd;
 	char			**seq_send;
+	t_bool			*flags;
 	int				(*putchar)(int);
 	struct winsize	dimensions;
 };
+
+/*
+** Those are the capabilites codes used by the application, associated with an
+** enum for easy access (they are stocked inside the seq_send member of
+** s_term_device
+*/
 
 enum	e_term_string_send
 {
@@ -76,11 +83,26 @@ enum	e_term_string_send
 	"bl"
 
 /*
+** Those are the boolean capabilities checked by the application, stored in the
+** same way that the string codes aboves, along with their own enum
+*/
+
+enum	e_bool_cap
+{
+	EAT_NEWLINE_GLITCH,
+	NB_BOOL_CAP
+};
+
+# define BOOL_CAP_INIT \
+	"xn"
+
+/*
 ** Internal ressources management of termcaps strings
 ** Implementation file : term_string_codes.c
 */
 
 char	**create_cmd_strings(void);
 void	destroy_cmd_strings(char ***cmd_strings);
+t_bool		*create_cap_flags(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:16:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 16:11:43 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:00:53 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,21 @@ size_t	would_go_beyond_edge(t_line_editor const *line_editor,
 			return (new_col_index % nb_column);
 	}
 	return (0);
+}
+
+/*
+** This function is useful to know when to work around the eat_newline_glitch
+** See URL below for an explanation
+** gnu.org/software/termutils/manual/termcap-1.3/html_mono/termcap.html#SEC27
+*/
+
+t_bool	check_wrap_and_do(t_line_editor *line_edit)
+{
+	if (would_go_beyond_edge(line_edit, RIGHT, 1))
+	{
+		move_cursor_relatively(line_edit->term, GO_DOWN, 1);
+		move_begin_line(line_edit->term);
+		return (TRUE);
+	}
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:04:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 15:03:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:00:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,11 @@ enum	e_edge
 
 size_t			would_go_beyond_edge(t_line_editor const *line_edit,
 		enum e_edge edge, size_t nb_move);
+
+/*
+** This particular function performs wraps when necessary. It should be called
+** everty time a relative mouvement is attempted
+*/
+t_bool			check_wrap_and_do(t_line_editor *line_edit);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 16:06:40 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 18:31:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_term_device	*create_term_device(int fd)
 		new->fd = fd;
 		new->keys_cmd = generate_term_keys();
 		new->seq_send = create_cmd_strings();
+		new->flags = create_cap_flags();
 		new->putchar = cust_putchar;
 		if (set_device_size(new) == -1)
 			destroy_term_device(&new);
@@ -54,6 +55,7 @@ void			destroy_term_device(t_term_device **term)
 		to_destroy->fd = 0;
 		destroy_term_keys(&to_destroy->keys_cmd);
 		destroy_cmd_strings(&to_destroy->seq_send);
+		destroy_bool_array(&to_destroy->flags, NB_BOOL_CAP);
 		free(to_destroy);
 		*term = NULL;
 	}
