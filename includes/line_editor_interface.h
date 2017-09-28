@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 11:04:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:37:37 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:03:19 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,16 @@ int				search_for_sequence(t_line_editor *term);
 
 int				confirm_line(t_line_editor *line_editor);
 t_bool			is_validated(t_line_editor const *line_editor);
+
+enum	e_edge
+{
+	TOP,
+	BOTTOM,
+	LEFT,
+	RIGHT
+};
+
+size_t			would_go_beyond_edge(t_line_editor const *line_edit,
+		enum e_edge edge, size_t nb_move);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 10:36:32 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:48:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_term_device	t_term_device;
 
 t_term_device	*create_term_device(int fd);
 void			destroy_term_device(t_term_device **term);
+int				set_device_size(t_term_device *term);
 
 /*
 ** Named constant passed as parameters to function which expect a direction
@@ -69,6 +70,7 @@ void			ring_audible_bell(t_term_device *term);
 */
 
 int				get_fd(t_term_device const *term);
+unsigned short	get_nb_column(t_term_device const *term);
 
 /*
 ** Processing terminal input

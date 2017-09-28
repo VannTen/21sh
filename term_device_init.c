@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/26 17:50:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 16:06:40 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 #include <termcap.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 
 static int		cust_putchar(int c)
 {
 	return (write(STDOUT_FILENO, &c, 1));
+}
+
+int				set_device_size(t_term_device *term)
+{
+	return (ioctl(term->fd, TIOCGWINSZ, &(term->dimensions)));
 }
 
 t_term_device	*create_term_device(int fd)
@@ -32,6 +38,8 @@ t_term_device	*create_term_device(int fd)
 		new->keys_cmd = generate_term_keys();
 		new->seq_send = create_cmd_strings();
 		new->putchar = cust_putchar;
+		if (set_device_size(new) == -1)
+			destroy_term_device(&new);
 	}
 	return (new);
 }

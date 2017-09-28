@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 18:26:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 14:31:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 16:48:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ struct	s_key
 		"kh",\
 		"@7",\
 		"kN",\
-		"@8"
+		"@8",\
+		"k1",\
+		"k2"
 
 /*
 ** This if a temporary workaround for capabilites that are not working as
@@ -54,7 +56,9 @@ struct	s_key
 		NULL,\
 		NULL,\
 		"aaa",\
-		"\n"
+		"\n",\
+		NULL,\
+		NULL
 # endif
 # define KEY_ACTIONS_INIT\
 		left_arrow,\
@@ -66,5 +70,7 @@ struct	s_key
 		home,\
 		end,\
 		bad_key,\
-		enter_key,
+		enter_key,\
+		function_key_1,\
+		function_key_2
 #endif

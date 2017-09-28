@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 09:51:02 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 11:29:11 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 15:02:56 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ size_t			go_to_last_letter(t_interact_str *str);
 ** Implementation file : interact_str_get.c
 */
 
+size_t			get_current_position(t_interact_str const *str);
 char			get_current_letter(t_interact_str const *str);
 char			*get_full_string(t_interact_str const *str);
 size_t			int_str_get_size(t_interact_str const *str);

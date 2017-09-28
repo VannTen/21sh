@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:58:27 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 11:21:02 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:47:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ char	*get_full_string(t_interact_str const *str)
 size_t	int_str_get_size(t_interact_str const *str)
 {
 	return (str->size);
+}
+
+size_t	get_current_position(t_interact_str const *str)
+{
+	return (str->index);
 }
 
 t_bool	is_valid_line(t_interact_str const *str)

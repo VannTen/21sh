@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/27 17:52:17 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/28 16:44:49 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ TARGET := shell
 
 SRC :=\
 	input_tools.c\
-	ft_arrow_keys.c\
 	term_device_init.c\
 	term_device_input.c\
 	term_device_get.c\
@@ -24,8 +23,10 @@ SRC :=\
 	term_string_codes.c\
 	term_keys.c\
 	term_keys_ressources.c\
+	ft_arrow_keys.c\
 	functions_keys.c\
 	control_keys.c\
+	misc_keys.c\
 	term_insert_del.c\
 	cursor_movement.c\
 	interact_str_modif_state.c\

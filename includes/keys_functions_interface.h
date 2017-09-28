@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:09:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 11:14:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/28 16:47:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,17 @@ int	bad_key(t_line_editor *term);
 
 /*
 ** Again, some other keys
-** Implementation file : proceed_key.c
+** Implementation file : control_keys.c
 */
 
 int	enter_key(t_line_editor *term);
+
+/*
+** Debug key : assigned to any available for debug purposes.
+** Implementation file : misc_keys.c
+*/
+
+int	function_key_1(t_line_editor *line_editor);
+int	function_key_2(t_line_editor *line_editor);
 
 #endif
