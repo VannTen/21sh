@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:16:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 19:00:53 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 17:49:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,30 @@ t_bool	is_validated(t_line_editor const *line_editor)
 size_t	would_go_beyond_edge(t_line_editor const *line_editor,
 		enum e_edge edge, size_t nb_move)
 {
-	size_t	new_col_index;
 	size_t	nb_column;
+	size_t	current_line_position;
 
-	nb_column = get_nb_column(line_editor->term);
-	//ft_printf("\nnb_column : %zu\ncurrent_position : %zu\nnb_move : %zu\n",
-	//		nb_column, get_current_position(line_editor->buffer), nb_move);
+	nb_column = get_nb_column(line_editor->term) - 1;
+	current_line_position =
+		get_current_position(line_editor->buffer) % nb_column;
+	term_debug(line_editor->term, "\n%zu %zu %zu %zu",
+			get_current_position(line_editor->buffer),
+				current_line_position, nb_move, nb_column);
 	if (edge == RIGHT)
 	{
-		new_col_index = (get_current_position(line_editor->buffer) + nb_move);
-		if (new_col_index > nb_column)
-			return (new_col_index % nb_column);
+		if (current_line_position + nb_move >= nb_column)
+		{
+			return (current_line_position + nb_move - nb_column + 1);
+		}
+		else
+			return (0);
+	}
+	if (edge == LEFT)
+	{
+		if (current_line_position <= nb_move)
+			return (nb_move - current_line_position + 1);
+		else
+			return (0);
 	}
 	return (0);
 }

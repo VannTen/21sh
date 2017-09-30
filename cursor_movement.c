@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:22:11 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/30 12:43:40 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 14:23:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ void	move_begin_line(t_term_device *term)
 void	move_begin_next_line(t_term_device *term)
 {
 	const char	begin_line[] = "\r\n";
+
 	write(term->fd, begin_line, 2);
+}
+
+void	move_end_previous_line(t_term_device *term)
+{
+	move_cursor_relatively(term, GO_UP, 1);
+	move_cursor_relatively(term, GO_RIGHT, get_nb_column(term) - 1);
 }

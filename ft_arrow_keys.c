@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 13:45:23 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/30 12:58:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 18:31:45 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,17 @@
 
 int	left_arrow(t_line_editor *term)
 {
+	size_t	line_position;
+
+	line_position = get_current_position(term->buffer);
 	if (back_x_letter(term->buffer, 1) != 0)
 	{
-		move_cursor_relatively(term->term, GO_LEFT, 1);
+		if (is_beyond_edge(term->term, line_position, LEFT, 1) > 0)
+		{
+			move_end_previous_line(term->term);
+		}
+		else
+			move_cursor_relatively(term->term, GO_LEFT, 1);
 		return (0);
 	}
 	return (1);
@@ -29,9 +37,15 @@ int	left_arrow(t_line_editor *term)
 
 int	right_arrow(t_line_editor *term)
 {
+	size_t	line_position;
+
+	line_position = get_current_position(term->buffer);
 	if (forward_x_letter(term->buffer, 1) != 0)
 	{
-		move_cursor_relatively(term->term, GO_RIGHT, 1);
+		if (is_beyond_edge(term->term, line_position, RIGHT, 1) > 0)
+			move_begin_next_line(term->term);
+		else
+			move_cursor_relatively(term->term, GO_RIGHT, 1);
 		return (0);
 	}
 	return (0);

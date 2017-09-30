@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/28 16:44:49 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/09/30 17:26:55 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ TARGET := shell
 
 SRC :=\
 	input_tools.c\
+	term_device_debug.c\
+	term_device_checks.c\
 	term_device_init.c\
 	term_device_input.c\
 	term_device_get.c\

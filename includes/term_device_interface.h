@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/30 12:48:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 17:57:31 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			move_cursor_relatively(t_term_device *term,
 		enum e_direction dir, size_t n_time);
 void			move_begin_line(t_term_device *term);
 void			move_begin_next_line(t_term_device *term);
+void			move_end_previous_line(t_term_device *term);
 
 /*
 ** Insertion and deletion of characters
@@ -81,5 +82,20 @@ t_bool			has_newline_glitch(t_term_device const *term);
 
 t_term_action	find_key_sequence(t_term_device const *buffer, char *buf,
 		size_t	*index);
+
+/*
+** Checks on positionning
+** Implementation file : term_device_checks.c
+*/
+
+size_t			is_beyond_edge(t_term_device const *term,
+		size_t abs_old_position, enum e_edge edge, size_t nb_move);
+/*
+** Debug wihtout scrambling the current state of the screen
+** Implementation file : term_device_debug.c
+*/
+
+int				term_debug(t_term_device *term, char const *fmt, ...)
+	__attribute__ ((format (printf, 2, 3)));
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/30 12:50:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 15:13:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ enum	e_term_string_send
 	EXIT_DELETE,
 	BEGIN_LINE,
 	RING_BELL,
+	SAVE_CURSOR,
+	RESTORE_CURSOR,
 	NB_TERM_STRING
 };
 
@@ -80,7 +82,9 @@ enum	e_term_string_send
 	"dc",\
 	"ec",\
 	"cr",\
-	"bl"
+	"bl",\
+	"sc",\
+	"rc"
 
 /*
 ** Those are the boolean capabilities checked by the application, stored in the
