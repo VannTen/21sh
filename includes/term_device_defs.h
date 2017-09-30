@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:07:19 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 18:34:21 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 12:50:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ enum	e_bool_cap
 
 char	**create_cmd_strings(void);
 void	destroy_cmd_strings(char ***cmd_strings);
-t_bool		*create_cap_flags(void);
+t_bool	*create_cap_flags(void);
 
 #endif

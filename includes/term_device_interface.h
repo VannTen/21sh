@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:09:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 14:48:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 12:48:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ enum	e_direction
 void			move_cursor_relatively(t_term_device *term,
 		enum e_direction dir, size_t n_time);
 void			move_begin_line(t_term_device *term);
+void			move_begin_next_line(t_term_device *term);
 
 /*
 ** Insertion and deletion of characters
@@ -71,6 +72,7 @@ void			ring_audible_bell(t_term_device *term);
 
 int				get_fd(t_term_device const *term);
 unsigned short	get_nb_column(t_term_device const *term);
+t_bool			has_newline_glitch(t_term_device const *term);
 
 /*
 ** Processing terminal input

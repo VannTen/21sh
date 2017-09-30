@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 19:22:11 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 11:53:32 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 12:43:40 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,15 @@ void	move_cursor_relatively(t_term_device *term,
 void	move_begin_line(t_term_device *term)
 {
 	tputs(term->seq_send[BEGIN_LINE], 1, term->putchar);
+}
+
+/*
+** This function is intended to work around the eat-newline-glitch, as described
+** in the termcap GNU manual. It uses the way that manual recommand to do so.
+*/
+
+void	move_begin_next_line(t_term_device *term)
+{
+	const char	begin_line[] = "\r\n";
+	write(term->fd, begin_line, 2);
 }

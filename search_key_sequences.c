@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 10:47:09 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 18:56:43 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/09/30 12:51:19 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@
 ** character present), increment it to 1 to consume that character
 */
 
+static void		*add_character(t_line_editor *term, char c)
+{
+	void	*ret;
+
+	ret = add_letter(term->buffer, c);
+	insert_character(term->term, c);
+	if (has_newline_glitch(term->term)
+			&& get_current_position(term->buffer) % get_nb_column(term->term)
+			== 0)
+		move_begin_next_line(term->term);
+	return (ret);
+}
+
 static size_t	send_to_buffer(char *buf, t_line_editor *term, size_t nb_char)
 {
 	size_t	index;
@@ -33,9 +46,7 @@ static size_t	send_to_buffer(char *buf, t_line_editor *term, size_t nb_char)
 	ret = &index;
 	while (index < nb_char && ret != NULL)
 	{
-		check_wrap_and_do(term);
-		ret = add_letter(term->buffer, buf[index]);
-		insert_character(term->term, buf[index]);
+		ret = add_character(term, buf[index]);
 		buf[index] = '\0';
 		index++;
 	}
