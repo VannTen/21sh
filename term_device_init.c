@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 12:12:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/28 18:31:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/02 10:08:37 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,24 @@ static int		cust_putchar(int c)
 	return (write(STDOUT_FILENO, &c, 1));
 }
 
+/*
+** Substracting one to the number of column is a workaround for a
+** inconvenient trouble : whenever I try to delete a character under the
+** cursor while in the column before the last,
+** it does not work. I have some ideas why this is the case, but that fix will
+** do for the time being.
+**
+** The idea : the fix for eat-newline-glitch (output carriage return and
+** newline) leaves that place in a weird state, that causes that behavior.
+*/
+
 int				set_device_size(t_term_device *term)
 {
-	return (ioctl(term->fd, TIOCGWINSZ, &(term->dimensions)));
+	int	ret;
+
+	ret = ioctl(term->fd, TIOCGWINSZ, &(term->dimensions));
+	term->dimensions.ws_col -= 1;
+	return (ret);
 }
 
 t_term_device	*create_term_device(int fd)
