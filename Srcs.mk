@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/09/27 17:52:17 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/03 12:20:08 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,13 @@
 
 TARGET := shell
 
+SYNTAX_ANALYZER:=\
+	token_break_rules_1.c\
+	token_break_rules_2.c\
+	token_break_tools.c\
+	token_recognition.c
 SRC :=\
+	$(SYNTAX_ANALYZER)\
 	input_tools.c\
 	ft_arrow_keys.c\
 	term_device_init.c\

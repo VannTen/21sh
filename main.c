@@ -6,83 +6,44 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 13:21:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/09/27 18:46:35 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/03 13:15:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <termcap.h>
-#include <unistd.h>
-#include <termios.h>
-#include "line_editor_interface.h"
+#include "token_defs.h"
 #include "libft.h"
+#include <unistd.h>
 
-char PC;
 
-char	*test()
+int main(int argc, const char **argv)
 {
-	static char	buf[10];
+	char const	**test;
+	char const	*test_1;
+	t_token	*token;
 
-	read(STDIN_FILENO, &buf, 1);
-	buf[1] = '\0';
-	ft_printf("%d\n%s", (int)buf[0], tgetstr("kb", NULL));
-	ft_printf("%d\n%s : %zu\n", (int)buf[0], tgetstr("kb", NULL),
-			ft_strlen(tgetstr("kb", NULL)));
-	return (buf);
-}
-int	fta_putchar(int c)
-{
-	return (write(STDOUT_FILENO, &c, 1));
-}
-int main(void)
-{
-	char	*term;
-	int		success;
-	char	*cmd;
-	struct termios	tty_original;
-	struct termios	tty_settings;
-	char	*result;
-	char	*pc;
+	if (argc < 2)
+		return (1);
 
-	errno = 0;
-	term = getenv("TERM");
-	success = tgetent(NULL, term);
-	if (success == 1)
-	{
-		tcgetattr(STDIN_FILENO, &tty_original);
-		tcgetattr(STDIN_FILENO, &tty_settings);
-		tty_settings.c_lflag &=
-			~(ICANON | ECHO | IEXTEN);
-		tty_settings.c_iflag &=
-			~(BRKINT | INPCK | ISTRIP | IXON);
-		tty_settings.c_oflag &= ~(OPOST);
-		tty_settings.c_cflag &= ~(CSIZE | PARENB);
-		tty_settings.c_cflag |= CS8;
-		tty_settings.c_cc[VMIN] = 1;
-		tty_settings.c_cc[VTIME] = 0;
-		tcsetattr(STDIN_FILENO, TCSANOW, &tty_settings);
-		pc = tgetstr("pc", NULL);
-		if (pc != NULL)
-			PC = pc[0];
-		else
-			PC = '\0';
-		cmd = tgetstr("ks", NULL);
-		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
-		result = term_act();
-		//result = test();
-		cmd = tgetstr("ke", NULL);
-		write(STDOUT_FILENO, cmd, ft_strlen(cmd));
-		tcsetattr(STDIN_FILENO, TCSANOW, &tty_original);
-		ft_printf("\nResult :\n[[[%s]]]\n%d", result,
-				state_of_quote(result, "\"'"));
-
-	}
+	test_1 = argv[1];
+	test = &test_1;
+	token = recognize_token(test);
+	if (token->type == OPERATOR)
+		ft_putstr("Operator : [");
 	else
+		ft_putstr("Word : [");
+	write(STDOUT_FILENO, token->start, token->size);
+	ft_putstr("]\n");
+	while(**test != '\0')
 	{
-		printf("%d\n%s", success, term);
-		perror(NULL);
+		destroy_token(&token);
+		token = recognize_token(test);
+		if (token->type == OPERATOR)
+			ft_putstr("Operator : [");
+		else
+			ft_putstr("Word : [");
+		write(STDOUT_FILENO, token->start, token->size);
+		ft_putstr("]\n");
 	}
+	destroy_token(&token);
 	return (0);
 }
