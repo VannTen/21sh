@@ -1,0 +1,64 @@
+/* Terminals */
+WORD
+ASSIGNEMENT_WORD
+NAME
+NEWLINE
+IO_NUMBER
+AND_IF
+OR_IF
+DSEMI
+DLESS	
+DGREAT
+LESSAND
+GREATAND
+LESSGREAT
+DLESSDASH
+CLOBBER
+AND
+SEMI
+GREAT
+LESS
+IF	
+THEN
+ELSE
+ELIF
+FI
+DO
+DONE
+CASE
+ESAC
+WHILE
+UNTIL
+FOR
+LBRACE
+RBRACE
+BANG
+IN
+EMPTY
+/* Non-terminals */
+simple_command	:cmd_prefix cmd_word cmd_suffix
+				|cmd_prefix cmd_word
+				|cmd_prefix
+				|cmd_name cmd_suffix
+				|cmd_name
+cmd_name		:WORD	/* Rule 7a /*
+cmd_word		:WORD	/* Rule 7b */
+cmd_prefix		:io_redirect
+				|cmd_prefix | io_redirect
+				|ASSIGNEMENT_WORD
+				|cmd_prefix ASSIGNEMENT_WORD
+cmd_suffix		:io_redirect
+				|cmd_suffix io_redirect
+redirect_list	:io_redirect | redirect_list io_redirect
+io_redirect		:io_file | IO_NUMBER io_file
+				|io_here | IO_NUMBER io_here
+io_file			:io_op filename
+io_op			:LESS | LESSAND | GREAT | GREATAND | DGREAT | LESSGREAT | CLOBBER
+filename		:WORD /* Apply Rule 2 */
+io_here			:DLESS here_end | DLESSDASH here_end
+here_end		:WORD	/* Apply Rule 3 */
+newline_list	:NEWLINE | newline_list NEWLINE
+linebreak		:newline_list | empty
+separator_op	:AND | SEMI
+separator		:separator_op linebreak | newline_list
+sequential_sep	:SEMIlinebreak | newline_list

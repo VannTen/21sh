@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 10:49:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/07 12:23:32 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/07 14:59:47 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ typedef enum	e_symbol_type
 	NB_SYMBOLS
 }				t_symbol_type;
 
-
+# define SYMBOL_END NB_SYMBOLS
 
 #endif
