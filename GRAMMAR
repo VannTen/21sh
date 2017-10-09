@@ -1,64 +1,62 @@
-/* Terminals */
-WORD
-ASSIGNEMENT_WORD
-NAME
-NEWLINE
-IO_NUMBER
-AND_IF
-OR_IF
-DSEMI
-DLESS	
-DGREAT
-LESSAND
-GREATAND
-LESSGREAT
-DLESSDASH
-CLOBBER
-AND
-SEMI
-GREAT
-LESS
-IF	
-THEN
-ELSE
-ELIF
-FI
-DO
-DONE
-CASE
-ESAC
-WHILE
-UNTIL
-FOR
-LBRACE
-RBRACE
-BANG
-IN
-EMPTY
-/* Non-terminals */
-simple_command	:cmd_prefix cmd_word cmd_suffix
-				|cmd_prefix cmd_word
-				|cmd_prefix
-				|cmd_name cmd_suffix
-				|cmd_name
-cmd_name		:WORD	/* Rule 7a /*
-cmd_word		:WORD	/* Rule 7b */
-cmd_prefix		:io_redirect
-				|cmd_prefix | io_redirect
+WORD;
+ASSIGNEMENT_WORD;
+NAME;
+NEWLINE;
+IO_NUMBER;
+AND_IF;
+OR_IF;
+DSEMI;
+DLESS;
+DGREAT;
+LESSAND;
+GREATAND;
+LESSGREAT;
+DLESSDASH;
+CLOBBER;
+AND;
+SEMI;
+GREAT;
+LESS;
+IF;
+THEN;
+ELSE;
+ELIF;
+FI;
+DO;
+DONE;
+CASE;
+ESAC;
+WHILE;
+UNTIL;
+FOR;
+LBRACE;
+RBRACE;
+BANG;
+IN;
+EMPTY;
+SIMPLE_COMMAND	:CMD_PREFIX CMD_WORD CMD_SUFFIX
+				|CMD_PREFIX CMD_WORD
+				|CMD_PREFIX
+				|CMD_NAME CMD_SUFFIX
+				|CMD_NAME;
+CMD_NAME		:WORD;
+CMD_WORD		:WORD;
+CMD_PREFIX		:IO_REDIRECT
+				|CMD_PREFIX | IO_REDIRECT
 				|ASSIGNEMENT_WORD
-				|cmd_prefix ASSIGNEMENT_WORD
-cmd_suffix		:io_redirect
-				|cmd_suffix io_redirect
-redirect_list	:io_redirect | redirect_list io_redirect
-io_redirect		:io_file | IO_NUMBER io_file
-				|io_here | IO_NUMBER io_here
-io_file			:io_op filename
-io_op			:LESS | LESSAND | GREAT | GREATAND | DGREAT | LESSGREAT | CLOBBER
-filename		:WORD /* Apply Rule 2 */
-io_here			:DLESS here_end | DLESSDASH here_end
-here_end		:WORD	/* Apply Rule 3 */
-newline_list	:NEWLINE | newline_list NEWLINE
-linebreak		:newline_list | empty
-separator_op	:AND | SEMI
-separator		:separator_op linebreak | newline_list
-sequential_sep	:SEMIlinebreak | newline_list
+				|CMD_PREFIX ASSIGNEMENT_WORD;
+CMD_SUFFIX		:IO_REDIRECT
+				|CMD_SUFFIX IO_REDIRECT;
+REDIRECT_LIST	:IO_REDIRECT | REDIRECT_LIST IO_REDIRECT;
+IO_REDIRECT		:IO_FILE | IO_NUMBER IO_FILE
+				|IO_HERE | IO_NUMBER IO_HERE;
+IO_FILE			:IO_OP FILENAME;
+IO_OP			:LESS | LESSAND | GREAT | GREATAND | DGREAT | LESSGREAT | CLOBBER;
+FILENAME		:WORD;
+IO_HERE			:DLESS HERE_END | DLESSDASH HERE_END;
+HERE_END		:WORD;
+NEWLINE_LIST	:NEWLINE | NEWLINE_LIST NEWLINE;
+LINEBREAK		:NEWLINE_LIST | EMPTY;
+SEPARATOR_OP	:AND | SEMI;
+SEPARATOR		:SEPARATOR_OP LINEBREAK | NEWLINE_LIST;
+SEQUENTIAL_SEP	:SEMI LINEBREAK | NEWLINE_LIST;
