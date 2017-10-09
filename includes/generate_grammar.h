@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 11:57:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/09 14:45:50 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/09 16:16:05 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,10 @@ typedef struct	s_symbol
 t_symbol	*create_symbol(void);
 void		destroy_symbol(t_symbol **to_destroy);
 void		print_symbol(t_symbol *to_print);
+
+/*
+** Print the grammar
+*/
+
+void	print_header(t_lst const *grammar, const char *header_file);
 #endif
