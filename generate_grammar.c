@@ -6,13 +6,14 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/09 16:15:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:31:05 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "generate_grammar.h"
 
 /*
@@ -105,7 +106,7 @@ int	main(int argc, const char **argv)
 	t_lst		*sym_list;
 	char const	**sym;
 
-	if (argc != 3)
+	if (argc != 4)
 		return (EXIT_FAILURE);
 	grammar = open(argv[1], O_RDONLY);
 	sym_list = NULL;
@@ -116,9 +117,10 @@ int	main(int argc, const char **argv)
 		if (symbol != NULL)
 			f_lstpush(symbol, &sym_list);
 	}
+	close(grammar);
 	symbol = f_lstpop(&sym_list);
 	destroy_symbol(&symbol);
-	//print_grammar(sym_list);
-	print_header(sym_list, argv[2]);
+	print_header(sym_list, argv[3]);
+	print_source(sym_list, argv[2], argv[3]);
 	return (0);
 }
