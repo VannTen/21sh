@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 09:50:33 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 15:08:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 ** (The fourth paramater might serve in the future for the generated makefile)
 */
 
-
 char	**split_prod(const char *prod)
 {
 	char	**splitted_prod;
@@ -69,33 +68,48 @@ t_lst	*get_productions(char const *prods_str)
 	return (prods);
 }
 
-t_symbol	*parse_symbol(char const **src)
+t_symbol	*parse_symbol(char **src)
 {
-	char const	*name;
-	char const	*productions;
+	char		*name;
+	char		*productions;
 	t_symbol	*new_symbol;
 
 	name = ft_strip(src[0]," \t\n");
+	if (name == NULL)
+		return (NULL);
 	new_symbol = create_symbol();
 	new_symbol->name = (char*)name;
 	if (src[1] != NULL)
 	{
 		productions = ft_strip(src[1], "\n\t");
 		new_symbol->productions = get_productions(productions);
-		ft_strdel((char**)&productions);
+		ft_strdel(&productions);
 	}
 	else
 		new_symbol->productions = NULL;
 	return (new_symbol);
 }
 
-void	print(void *symbol)
+void	print_files(t_lst const *sym_list, char const *gram_name)
 {
-	print_symbol(symbol);
-}
-void	print_grammar(t_lst	*grammar)
-{
-	f_lstiter(grammar, print);
+	size_t	index;
+	char	*stem;
+	char	*header;
+	char	*src;
+	char	*init;
+
+	index = ft_strlen_gen(gram_name, '.');
+	stem = ft_strndup(gram_name, index);
+	header = ft_strvajoin(3, "includes/", stem, "_interface.h");
+	src = ft_strjoin(stem, "_source.c");
+	init = ft_strjoin(stem, "_init.c");
+	print_header(sym_list, header);
+	print_source(sym_list, src);
+	print_init(sym_list, init);
+	ft_strdel(&stem);
+	ft_strdel(&header);
+	ft_strdel(&src);
+	ft_strdel(&init);
 }
 
 int	main(int argc, const char **argv)
@@ -104,25 +118,24 @@ int	main(int argc, const char **argv)
 	char		*line;
 	t_symbol	*symbol;
 	t_lst		*sym_list;
-	char const	**sym;
+	char		**sym;
 
-	if (argc != 4)
+	if (argc != 2)
 		return (EXIT_FAILURE);
 	grammar = open(argv[1], O_RDONLY);
 	sym_list = NULL;
 	while (get_next_elem(grammar, &line, ';') == ONE_LINE_READ
 			&& line[0] != '\0')
 	{
-		sym = (const char**)ft_strsplit(line, ':');
+		sym = ft_strsplit(line, ':');
 		symbol = parse_symbol(sym);
 		if (symbol != NULL)
 			f_lstpush(symbol, &sym_list);
+		ft_strdel(&line);
+		ft_free_string_array(&sym);
 	}
-	ft_strdel(&line);
 	close(grammar);
-	symbol = f_lstpop(&sym_list);
-	destroy_symbol(&symbol);
-	print_header(sym_list, argv[3]);
-	print_source(sym_list, argv[2], argv[3]);
+	print_files(sym_list, argv[1]);
+	f_lstdel(&sym_list, destroy_symbol);
 	return (0);
 }

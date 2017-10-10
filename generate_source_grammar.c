@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:33:24 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 12:03:56 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 15:22:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,29 @@ static void	print_init_function(t_symbol const *sym, int const fd)
 	char		*lower_case;
 	size_t		nb_prod;
 
-	if (sym->productions == NULL)
-		return ;
 	nb_prod = f_lst_len(sym->productions);
 	lower_case = ft_strmap(sym->name, f_tolower);
 	ft_dprintf(fd, "\n%1$s\t*create_%2$s(void)\n{\n"
 			"\t%1$s\t*new;\n"
-			"\tsize_t\t\tindex;\n\n"
+			"%4$s"
 			"\tnew = malloc(sizeof(t_symbol));\n"
 			"\tif (new != NULL)\n\t{\n"
-			"\t\tnew->type = %3$s;\n"
-			"\t\tindex = 0;\n"
-			"\t\tnew->productions = malloc(sizeof(t_symbol_type*)"
-			" * (%4$zu + 1));\n"
-			, type_name, lower_case, sym->name, nb_prod);
-	f_lstiter_va(sym->productions, print_prods, fd);
-	ft_dprintf(fd, "\t\tnew->productions[index] = NULL;\n\t}"
-			"\n\treturn (new);\n}\n");
+			"\t\tnew->type = %3$s;\n", type_name, lower_case, sym->name,
+			nb_prod != 0 ? "\tsize_t\t\tindex;\n\n" : "");
+	if (nb_prod == 0)
+		ft_dprintf(fd, "\t\tnew->productions = NULL;\n");
+	else
+	{
+		ft_dprintf(fd,
+				"\t\tindex = 0;\n"
+				"\t\tnew->productions = malloc(sizeof(t_symbol_type*)"
+				" * (%1$zu + 1));\n"
+				, nb_prod);
+		f_lstiter_va(sym->productions, print_prods, fd);
+		ft_dprintf(fd, "\t\tnew->productions[index] = NULL;\n");
+	}
+	ft_strdel(&lower_case);
+	ft_dprintf(fd, "\t}\n\treturn (new);\n}\n");
 }
 
 static void	print_list(const void *v_sym, va_list args)
@@ -67,14 +73,12 @@ static void	print_list(const void *v_sym, va_list args)
 	print_init_function(sym, fd);
 }
 
-void		print_source(t_lst const *grammar, char const *source_file,
-		char const *header_file)
+void		print_source(t_lst const *grammar, char const *source_file)
 {
 	char	*file_no_dir;
 	char	*upper_case;
 	int		tgt_file;
 
-	(void)header_file;
 	tgt_file = open(source_file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	file_no_dir = ft_strdup(get_no_dir_part(source_file));
 	upper_case = ft_strmap(file_no_dir, to_unix_const);

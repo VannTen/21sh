@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 12:00:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 11:42:37 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 14:49:36 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_symbol	*create_symbol(void)
 
 }
 
-void		destroy_symbol(t_symbol	**to_destroy)
+void		destroy_symbol(void	**to_destroy)
 {
 	t_symbol	*symbol;
 
@@ -37,6 +37,7 @@ void		destroy_symbol(t_symbol	**to_destroy)
 	{
 		ft_strdel(&symbol->name);
 		f_lstdel(&symbol->productions, ft_gen_free_string_array);
+		*to_destroy = NULL;
 	}
 }
 

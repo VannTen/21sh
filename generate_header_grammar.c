@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:37:37 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 11:58:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 15:56:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ static void	print_prot_init_function(t_symbol const *sym, int const fd)
 	char	*lower_case;
 	size_t	nb_prod;
 
-	if (sym->productions == NULL)
-		return ;
 	nb_prod = f_lst_len(sym->productions);
 	lower_case = ft_strmap(sym->name, f_tolower);
-	ft_dprintf(fd, "%2$s %1$3s *create_%3$s(void);\n"
-			, "", type_name, lower_case);
+	ft_dprintf(fd, "%s\t*create_%s(void);\n"
+			, type_name, lower_case);
 }
 
 static void	print_list(const void *v_sym, va_list args)
@@ -74,6 +72,7 @@ void		print_header(t_lst const *grammar, const char *header_file)
 	f_lstiter_va(grammar, print_name, tgt_file);
 	ft_dprintf(tgt_file, "%1$4sNB_SYMBOLS\n}%1$4st_symbol_type;\n\n", "");
 	f_lstiter_va(grammar, print_list, tgt_file);
+	ft_dprintf(tgt_file, "t_symbol\t**create_grammar(void);\n");
 	ft_dprintf(tgt_file, "\n#endif\n");
 	close(tgt_file);
 }
