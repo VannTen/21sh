@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 11:57:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/09 18:30:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 11:01:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void		print_symbol(t_symbol *to_print);
 void	print_header(t_lst const *grammar, const char *header_file);
 void	print_source(t_lst const *grammar, char const *source_file,
 		const char *header_file);
+char	to_unix_const(char c);
 #endif

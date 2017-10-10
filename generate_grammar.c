@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/09 18:31:05 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 09:50:33 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,15 @@ int	main(int argc, const char **argv)
 		return (EXIT_FAILURE);
 	grammar = open(argv[1], O_RDONLY);
 	sym_list = NULL;
-	while (get_next_elem(grammar, &line, ';') == ONE_LINE_READ)
+	while (get_next_elem(grammar, &line, ';') == ONE_LINE_READ
+			&& line[0] != '\0')
 	{
 		sym = (const char**)ft_strsplit(line, ':');
 		symbol = parse_symbol(sym);
 		if (symbol != NULL)
 			f_lstpush(symbol, &sym_list);
 	}
+	ft_strdel(&line);
 	close(grammar);
 	symbol = f_lstpop(&sym_list);
 	destroy_symbol(&symbol);
