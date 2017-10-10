@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:37:37 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 15:56:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:36:12 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void		print_header(t_lst const *grammar, const char *header_file)
 	ft_dprintf(tgt_file, "%1$4sNB_SYMBOLS\n}%1$4st_symbol_type;\n\n", "");
 	f_lstiter_va(grammar, print_list, tgt_file);
 	ft_dprintf(tgt_file, "t_symbol\t**create_grammar(void);\n");
+	ft_dprintf(tgt_file,
+			"char const\t*get_symbol_name(t_symbol_type index);\n");
 	ft_dprintf(tgt_file, "\n#endif\n");
 	close(tgt_file);
 }

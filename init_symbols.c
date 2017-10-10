@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:56:32 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 13:12:38 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:06:53 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_symbol_type	*generate_one_production(size_t nb, ...)
 	size_t			index;
 	va_list			list_symbol;
 
-	production = malloc(sizeof(t_symbol_type) * nb + 1);
+	production = malloc(sizeof(t_symbol_type) * (nb + 1));
 	index = 0;
 	if (production != NULL)
 	{

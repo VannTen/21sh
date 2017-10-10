@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 10:49:41 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 12:05:18 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:45:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 
 t_symbol_type	*generate_one_production(size_t nb, ...);
+void			print_symbol(t_symbol const *sym);
 
 # define SYMBOL_END NB_SYMBOLS
 

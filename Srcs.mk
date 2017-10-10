@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/10 15:18:59 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/10 16:44:30 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,18 @@ SRC :=\
 	search_key_sequences.c\
 
 
-SRC := $(SRC) gen_grammar_source.c gen_grammar_init.c init_symbols.c
+SRC := $(SRC) gen_grammar_source.c gen_grammar_init.c gen_grammar_names.c\
+	init_symbols.c symbol_print.c
 
 ### Additional rules for the grammar generator
-%_source.c includes/%_interface.h %_init.c: %.grammar %
+%_source.c includes/%_interface.h %_init.c %_names.c: %.grammar %
 	./$(word 2, $^) $< 
 
 GEN_GRAMMAR_SRC := generate_header_grammar.c\
 	generate_source_grammar.c\
 	generate_symbols.c\
 	generate_grammar_init.c\
+	generate_grammar_names.c\
 	generate_grammar.c
 GEN_GRAMMAR_OBJ := $(patsubst %.c,object/%.o,$(GEN_GRAMMAR_SRC))
 

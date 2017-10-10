@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 15:08:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:26:33 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,26 @@ t_symbol	*parse_symbol(char **src)
 
 void	print_files(t_lst const *sym_list, char const *gram_name)
 {
-	size_t	index;
 	char	*stem;
 	char	*header;
 	char	*src;
 	char	*init;
+	char	*names;
 
-	index = ft_strlen_gen(gram_name, '.');
-	stem = ft_strndup(gram_name, index);
+	stem = ft_strndup(gram_name, ft_strlen_gen(gram_name, '.'));
 	header = ft_strvajoin(3, "includes/", stem, "_interface.h");
 	src = ft_strjoin(stem, "_source.c");
 	init = ft_strjoin(stem, "_init.c");
+	names = ft_strjoin(stem, "_names.c");
 	print_header(sym_list, header);
 	print_source(sym_list, src);
 	print_init(sym_list, init);
+	print_names(sym_list, names);
 	ft_strdel(&stem);
 	ft_strdel(&header);
 	ft_strdel(&src);
 	ft_strdel(&init);
+	ft_strdel(&names);
 }
 
 int	main(int argc, const char **argv)
