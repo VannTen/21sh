@@ -6,3 +6,5 @@
 # *~
 libft
 shell
+includes/gen_*
+gen_*
