@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:56:32 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 10:59:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 13:12:38 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-t_symbol_type	generate_one_production(size_t nb, ...)
+t_symbol_type	*generate_one_production(size_t nb, ...)
 {
-	t_symbol_type	production;
+	t_symbol_type	*production;
 	size_t			index;
 	va_list			list_symbol;
 
@@ -24,7 +24,7 @@ t_symbol_type	generate_one_production(size_t nb, ...)
 	index = 0;
 	if (production != NULL)
 	{
-		va_start(nb, list_symbol);
+		va_start(list_symbol, nb);
 		while (index < nb)
 		{
 			production[index] = va_arg(list_symbol, t_symbol_type);

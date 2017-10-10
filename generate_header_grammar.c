@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:37:37 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 11:02:29 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 11:58:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void		print_header(t_lst const *grammar, const char *header_file)
 	tgt_file = open(header_file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	file_no_dir = ft_strdup(get_no_dir_part(header_file));
 	upper_case = ft_strmap(file_no_dir, to_unix_const);
-	ft_dprintf(tgt_file, "#ifndef %1$s\n# define %1$s\n"
-			"# include \"symbol_defs.h\"\n"
+	ft_dprintf(tgt_file, "#ifndef %1$s\n# define %1$s\n\n"
+			"typedef struct	s_symbol\tt_symbol;\n"
 			"typedef enum	e_symbol_type {\n",
 			upper_case);
 	f_lstiter_va(grammar, print_name, tgt_file);

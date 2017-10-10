@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/03 12:20:08 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/10 13:20:08 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,29 @@ SRC :=\
 	line_editor_checks.c\
 	main.c\
 	search_key_sequences.c\
-	term_actions.c
+
+
+SRC := $(SRC) gen_grammar_source.c init_symbols.c
+
+### Additional rules for the grammar generator
+%_source.c includes/%_interface.h : %.grammar | %
+	./$| $< $*_source.c includes/$*_interface.h
+
+GEN_GRAMMAR_SRC := generate_header_grammar.c\
+	generate_source_grammar.c\
+	generate_symbols.c\
+	generate_grammar.c
+GEN_GRAMMAR_OBJ := $(patsubst %.c,object/%.o,$(GEN_GRAMMAR_SRC))
+
+gen_grammar: $(GEN_GRAMMAR_OBJ)
+	$(CC) -o $@ $^ $(DEBUG_FLAGS) -Llibft -lft
+
+$(GEN_GRAMMAR_OBJ): object/%.o: %.c .dep/%.dep | object/ .dep/
+	$(if $(PRINT_INFO),$(info $Compiling $@))
+	$(COMPILE)
+	$(POSTCOMPILE)
+	$(RM) $(word 2,$^).tmp
+	$(TOUCH) $@
 
 # Directories
 

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:33:24 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 11:39:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/10 12:03:56 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	print_init_function(t_symbol const *sym, int const fd)
 	ft_dprintf(fd, "\n%1$s\t*create_%2$s(void)\n{\n"
 			"\t%1$s\t*new;\n"
 			"\tsize_t\t\tindex;\n\n"
+			"\tnew = malloc(sizeof(t_symbol));\n"
 			"\tif (new != NULL)\n\t{\n"
 			"\t\tnew->type = %3$s;\n"
 			"\t\tindex = 0;\n"
@@ -52,8 +53,8 @@ static void	print_init_function(t_symbol const *sym, int const fd)
 			" * (%4$zu + 1));\n"
 			, type_name, lower_case, sym->name, nb_prod);
 	f_lstiter_va(sym->productions, print_prods, fd);
-	ft_dprintf(fd, "\t}\n\tnew->productions[index] = NULL\n"
-			"\treturn (new);\n}\n");
+	ft_dprintf(fd, "\t\tnew->productions[index] = NULL;\n\t}"
+			"\n\treturn (new);\n}\n");
 }
 
 static void	print_list(const void *v_sym, va_list args)
@@ -73,13 +74,13 @@ void		print_source(t_lst const *grammar, char const *source_file,
 	char	*upper_case;
 	int		tgt_file;
 
+	(void)header_file;
 	tgt_file = open(source_file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	file_no_dir = ft_strdup(get_no_dir_part(source_file));
 	upper_case = ft_strmap(file_no_dir, to_unix_const);
-	ft_dprintf(tgt_file, "#include \"%s\"\n"
+	ft_dprintf(tgt_file,
 			"#include \"symbol_defs.h\"\n"
-			"#include <stdlib.h>\n",
-			get_no_dir_part(header_file));
+			"#include <stdlib.h>\n");
 	f_lstiter_va(grammar, print_list, tgt_file);
 	close(tgt_file);
 }
