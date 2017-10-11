@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 10:33:24 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/10 15:22:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/11 20:13:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+/*
 static void	print_prods(const void *v_prod, va_list args)
 {
 	char const *const	*prod;
@@ -23,45 +24,13 @@ static void	print_prods(const void *v_prod, va_list args)
 
 	fd = va_arg(args, int);
 	prod = v_prod;
-	ft_dprintf(fd, "\t\tnew->productions[index]"
-			" = generate_one_production(%zu, ",
-			ft_string_array_len(prod));
-	ft_print_string_array_fd(fd, prod, ", ");
-	ft_putstr_fd(");\n", fd);
-	ft_dprintf(fd, "\t\tindex++;\n");
 
 }
 
 static void	print_init_function(t_symbol const *sym, int const fd)
 {
-	const char	type_name[]	= "t_symbol";
-	char		*lower_case;
-	size_t		nb_prod;
-
-	nb_prod = f_lst_len(sym->productions);
-	lower_case = ft_strmap(sym->name, f_tolower);
-	ft_dprintf(fd, "\n%1$s\t*create_%2$s(void)\n{\n"
-			"\t%1$s\t*new;\n"
-			"%4$s"
-			"\tnew = malloc(sizeof(t_symbol));\n"
-			"\tif (new != NULL)\n\t{\n"
-			"\t\tnew->type = %3$s;\n", type_name, lower_case, sym->name,
-			nb_prod != 0 ? "\tsize_t\t\tindex;\n\n" : "");
-	if (nb_prod == 0)
-		ft_dprintf(fd, "\t\tnew->productions = NULL;\n");
-	else
-	{
-		ft_dprintf(fd,
-				"\t\tindex = 0;\n"
-				"\t\tnew->productions = malloc(sizeof(t_symbol_type*)"
-				" * (%1$zu + 1));\n"
-				, nb_prod);
-		f_lstiter_va(sym->productions, print_prods, fd);
-		ft_dprintf(fd, "\t\tnew->productions[index] = NULL;\n");
-	}
-	ft_strdel(&lower_case);
-	ft_dprintf(fd, "\t}\n\treturn (new);\n}\n");
 }
+*/
 
 static void	print_list(const void *v_sym, va_list args)
 {
@@ -70,7 +39,7 @@ static void	print_list(const void *v_sym, va_list args)
 
 	sym = v_sym;
 	fd = va_arg(args, int);
-	print_init_function(sym, fd);
+//	print_init_function(sym, fd);
 }
 
 void		print_source(t_lst const *grammar, char const *source_file)

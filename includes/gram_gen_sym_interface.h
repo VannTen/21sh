@@ -6,13 +6,14 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 14:24:59 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/11 20:47:17 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAM_GEN_SYM_INTERFACE_H
 # define GRAM_GEN_SYM_INTERFACE_H
 # include "gram_gen_prods_interface.h"
+# include <stddef.h>
 
 typedef struct s_symbol	t_symbol;
 
@@ -30,26 +31,27 @@ void		destroy_symbol(t_symbol **to_destroy);
 */
 
 t_prod		*add_prod(t_symbol *sym, t_prod *prod);
-t_prod		*take_left_recursive(t_symbol *sym);
 
 /*
 ** Getters
 ** Implementation file : gramm_gen_sym_get.c
 */
 
+t_prod		*take_left_recursive(t_symbol *sym);
 char const	*get_name(t_symbol const *sym);
+size_t		get_prod_nb(t_symbol const *sym);
 
 /*
 ** Printers
 ** Implementation file : gramm_gen_sym_print.c
 */
 
-void		*print_sym(t_symbol const *sym);
+void		print_sym_initializer(t_symbol const *sym, int fd);
 
 /*
 ** Parsing a prod
 ** Implementation file : gramm_gen_sym_parse.c
 */
 
-t_sym	*parse_symbol(char const *str_sym);
+t_symbol	*parse_symbol(char const *str_sym);
 #endif
