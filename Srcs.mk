@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/11 13:21:14 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/11 19:40:15 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,13 @@ SRC :=\
 	search_key_sequences.c\
 
 
-SRC := $(SRC) gen_grammar_source.c gen_grammar_init.c gen_grammar_names.c\
-	init_symbols.c symbol_print.c
+SRC\ :=\
+	$(SRC)\
+	gen_grammar_source.c\
+	gen_grammar_init.c\
+	gen_grammar_names.c\
+	init_symbols.c\
+	symbol_print.c
 
 ### Additional rules for the grammar generator
 %_source.c includes/%_interface.h %_init.c %_names.c: %.grammar gram_gen
@@ -58,15 +63,23 @@ GEN_GRAMMAR_SRC := generate_header_grammar.c\
 	generate_symbols.c\
 	generate_grammar_init.c\
 	generate_grammar_names.c\
+	gramm_gen_prod_parse.c\
+	gramm_gen_prod_test.c\
+	gramm_gen_prod_print.c\
+	gramm_gen_sym_parse.c\
+	gramm_gen_sym_print.c\
+	gramm_gen_sym_set.c\
+	gramm_gen_sym_get.c\
+	gramm_gen_sym_ressources.c\
 	generate_grammar.c
+
 GEN_GRAMMAR_OBJ := $(patsubst %.c,object/%.o,$(GEN_GRAMMAR_SRC))
 
-gram_gen: $(GEN_GRAMMAR_OBJ)
-	$(CC) -o $@ $^ $(DEBUG_FLAGS) -Llibft -lft
-
+gram_gen: $(GEN_GRAMMAR_OBJ) -lft
+	$(CC) -o $@ $^ $(DEBUG_FLAGS) 
 $(GEN_GRAMMAR_OBJ): object/%.o: %.c .dep/%.dep | object/ .dep/
-	$(if $(PRINT_INFO),$(info $Compiling $@))
-	$(COMPILE)
+	$(if $(PRINT_INFO),$(info Compiling $@))
+	$(COMPILE) -iquoteincludes -iquotelibft
 	$(POSTCOMPILE)
 	$(RM) $(word 2,$^).tmp
 	$(TOUCH) $@
