@@ -6,20 +6,21 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 19:22:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/11 20:43:14 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAM_GEN_PRODS_INTERFACE_H
 # define GRAM_GEN_PRODS_INTERFACE_H
 # include "libft.h"
+# include <stddef.h>
 
 /*
 ** A production is one sequence of symbols which can derivate a non-terminal
 ** symbols
 */
 
-typedef	void		t_sym_name;
+typedef	void const	t_sym_name;
 typedef t_sym_name*	t_prod;
 
 /*
@@ -30,12 +31,19 @@ typedef t_sym_name*	t_prod;
 t_bool	is_left_recursive(t_sym_name const *sym_name, t_prod const *prod);
 
 /*
+** Getters
+** Implementation file : gramm_gen_prod_get.c
+*/
+
+size_t	get_prod_len(t_prod const *prod);
+/*
 ** Setting prod
 ** Implementation file : gramm_gen_prod_set.c
 */
 
-void	add_to_prod(t_sym_name *type, t_prod **prod);
-t_prod	*join_prods(t_prod const *prod_1, t_prod const prod_2);
+t_prod	*append_to_prod(t_sym_name const *type, t_prod const *prod);
+t_prod	*prefix_to_prod(t_sym_name const *type, t_prod const *prod);
+t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
 
 /*
 ** Printing prods
@@ -49,6 +57,6 @@ void	print_prod(t_prod const *prod, int fd);
 ** Implementation file : gramm_gen_prod_parse.c
 */
 
-t_prod	*parse_prods(char const *str_prod);
+t_prod	**parse_prods(char const *str_prod);
 
 #endif
