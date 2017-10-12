@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_grammar_init.c                            :+:      :+:    :+:   */
+/*   grammar_print_init.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/10 13:46:49 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 11:37:04 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/12 12:26:17 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/12 14:21:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grammar_defs.h"
+#include "gram_gen_sym_interface.h"
 #include "libft.h"
-#include <stdarg.h>
-#include <fcntl.h>
-#include <unistd.h>
 
-static void	print_list(void const *v_sym, va_list args)
+void		print_symbol_init(t_symbol const *symbol,
+		int const file, const char *prefix)
 {
-	t_symbol const	*sym;
-	char			*name;
+	char	*name;
 
-	sym = v_sym;
-	name = ft_strmap(sym->name, f_tolower);
-	ft_dprintf(va_arg(args, int), "create_%s, ", name);
-	ft_strdel(&name);
+	name = ft_strmap(get_name(symbol), f_tolower);
+	ft_dprintf(file, "%s%s ,", prefix, name);
 }
 
-void		print_grammar_init(t_grammar const *grammar, char const *init_file)
+static void	adapt_print(void const *symbol, va_list args)
 {
-	int		tgt_file;
+	int			fd;
+	const char	*prefix;
 
-	tgt_file = open(init_file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	ft_dprintf(tgt_file,
-			"#include \"symbol_interface.h\"\n"
+	fd = va_arg(args, int);
+	prefix = va_arg(args, const char*);
+	print_symbol_init(symbol, fd, prefix);
+}
+
+void		print_grammar_init(t_grammar const *grammar, int const file,
+		char const *prot_name)
+{
+	ft_dprintf(file,
+			"#include \"%s\"\n"
 			"#include <stdlib.h>\n\n"
 			"t_symbol\t**create_grammar(void)\n{\n"
 			"\tt_symbol\t**grammar;\n"
 			"\tsize_t\t\tindex;\n"
-			"\tt_symbol\t*(*init_func[])(void) = {");
-	f_lstiter_va(grammar, print_list, tgt_file);
-	ft_dprintf(tgt_file, " NULL};\n\n"
+			"\tt_symbol\t*(*init_func[])(void) = {", prot_name);
+	f_fifoiter_va(grammar->sym_list, adapt_print, file, "create_");
+	ft_dprintf(file, " NULL};\n\n"
 			"\tindex = 0;\n"
 			"\tgrammar = malloc(sizeof(t_symbol*) * NB_SYMBOLS);\n"
 			"\twhile (index < NB_SYMBOLS)\n"
@@ -49,5 +53,4 @@ void		print_grammar_init(t_grammar const *grammar, char const *init_file)
 			"\t\tindex++;\n"
 			"\t}\n"
 			"\treturn (grammar);\n}\n");
-	close(tgt_file);
 }

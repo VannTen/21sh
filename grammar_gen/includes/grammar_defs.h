@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_grammar.h                                 :+:      :+:    :+:   */
+/*   grammar_defs.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/09 11:57:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 11:26:54 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/12 12:00:16 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/12 12:27:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERATE_GRAMMAR_H
-# define GENERATE_GRAMMAR_H
+#ifndef GRAMMAR_DEFS_H
+# define GRAMMAR_DEFS_H
+# include "grammar_interface.h"
 # include "libft.h"
 
 /*
-** Print the grammar
+** Sym_list is a list of t_symbol element
 */
 
-void	print_header(t_lst const *grammar, const char *header_file);
-void	print_source(t_lst const *grammar, char const *source_file);
-void	print_init(t_lst const *grammar, char const *init_file);
-void	print_names(t_lst const *grammar, char const *names_file);
-char	to_unix_const(char c);
+struct s_grammar
+{
+	const char	*start_symbol;
+	t_fifo		*sym_list;
+};
+
 #endif

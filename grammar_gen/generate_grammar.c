@@ -6,15 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 15:45:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 12:34:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "grammar_interface.h"
 #include "libft.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include "generate_grammar.h"
 
 /*
 ** This small programm has for purpose to generate C files which will initialize
@@ -38,57 +35,6 @@
 **
 ** (The fourth paramater might serve in the future for the generated makefile)
 */
-
-char	**split_prod(const char *prod)
-{
-	char	**splitted_prod;
-
-	splitted_prod = ft_strsplit(prod, ' ');
-	return (splitted_prod);
-}
-
-t_lst	*get_productions(char const *prods_str)
-{
-	char	**one_prod;
-	char	**productions;
-	t_lst	*prods;
-	size_t	index;
-
-	productions = ft_strsplit(prods_str, '|');
-	index = 0;
-	prods = NULL;
-	while (productions[index] != NULL)
-	{
-		one_prod = split_prod(productions[index]);
-		f_lstpush(one_prod, &prods);
-		one_prod = NULL;
-		index++;
-	}
-	ft_free_string_array(&productions);
-	return (prods);
-}
-
-t_symbol	*parse_symbol(char **src)
-{
-	char		*name;
-	char		*productions;
-	t_symbol	*new_symbol;
-
-	name = ft_strip(src[0]," \t\n");
-	if (name == NULL)
-		return (NULL);
-	new_symbol = create_symbol();
-	new_symbol->name = (char*)name;
-	if (src[1] != NULL)
-	{
-		productions = ft_strip(src[1], "\n\t");
-		new_symbol->productions = get_productions(productions);
-		ft_strdel(&productions);
-	}
-	else
-		new_symbol->productions = NULL;
-	return (new_symbol);
-}
 
 void	print_files(t_lst const *sym_list, char const *gram_name)
 {
@@ -116,27 +62,17 @@ void	print_files(t_lst const *sym_list, char const *gram_name)
 
 int	main(int argc, const char **argv)
 {
-	int			grammar;
-	char		*line;
-	t_symbol	*symbol;
-	t_lst		*sym_list;
-	char		**sym;
+	t_grammar	*grammar;
+	char		*stem;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
-	grammar = open(argv[1], O_RDONLY);
-	sym_list = NULL;
-	while (get_next_elem(grammar, &line, ';') == ONE_LINE_READ
-			&& line[0] != '\0')
+	grammar = parse_grammar(argv[1]);
+	if (grammar != NULL)
 	{
-		symbol = parse_symbol(sym);
-		if (symbol != NULL)
-			f_lstpush(symbol, &sym_list);
-		ft_strdel(&line);
-		ft_free_string_array(&sym);
+		print_grammar(stem);
 	}
-	close(grammar);
-	print_files(sym_list, argv[1]);
-	f_lstdel(&sym_list, destroy_symbol);
-	return (0);
+	else
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
