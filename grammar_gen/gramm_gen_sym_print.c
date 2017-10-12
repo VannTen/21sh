@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 20:03:05 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 18:23:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	print_prods(t_prod **prods, int const fd)
 	}
 }
 
-void	print_sym_intializer(t_symbol const *sym, int const fd)
+void	print_sym_initializer(t_symbol const *sym, int const fd)
 {
 	const char	type_name[]	= "t_symbol";
 	char		*lower_case;

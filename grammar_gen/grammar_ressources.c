@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_print_source.c                             :+:      :+:    :+:   */
+/*   grammar_ressources.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 14:33:54 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 17:41:22 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/12 18:23:50 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/12 18:28:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grammar_defs.h"
 #include "gram_gen_sym_interface.h"
 #include "libft.h"
-#include <stdarg.h>
+#include <stdlib.h>
 
-static void	adapt_print(void const *symbol, va_list args)
+static void	sym_destroy(void **to_destroy)
 {
-	print_sym_initializer(symbol, va_arg(args, int));
+	destroy_symbol((t_symbol**)to_destroy);
 }
-
-void		print_grammar_source(t_grammar const *grammar, int const file,
-		char const *dummy)
+void	destroy_grammar(t_grammar **to_destroy)
 {
-	(void)dummy;
-	ft_dprintf(file,
-			"#include \"symbol_defs.h\"\n"
-			"#include <stdlib.h>\n");
-	f_fifoiter_va(grammar->sym_list, adapt_print, file);
+	t_grammar	*gram;
+
+	gram = *to_destroy;
+	if (gram != NULL)
+	{
+		gram->start_symbol = NULL;
+		f_fifo_destroy(&gram->sym_list, &sym_destroy);
+		free(gram);
+		*to_destroy = NULL;
+	}
 }

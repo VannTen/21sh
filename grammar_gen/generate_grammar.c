@@ -6,12 +6,16 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 12:34:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 18:52:16 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "grammar_generator.h"
 #include "grammar_interface.h"
 #include "libft.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /*
 ** This small programm has for purpose to generate C files which will initialize
@@ -36,43 +40,75 @@
 ** (The fourth paramater might serve in the future for the generated makefile)
 */
 
-void	print_files(t_lst const *sym_list, char const *gram_name)
-{
-	char	*stem;
-	char	*header;
-	char	*src;
-	char	*init;
-	char	*names;
 
-	stem = ft_strndup(gram_name, ft_strlen_gen(gram_name, '.'));
-	header = ft_strvajoin(3, "includes/", stem, "_interface.h");
-	src = ft_strjoin(stem, "_source.c");
-	init = ft_strjoin(stem, "_init.c");
-	names = ft_strjoin(stem, "_names.c");
-	print_header(sym_list, header);
-	print_source(sym_list, src);
-	print_init(sym_list, init);
-	print_names(sym_list, names);
-	ft_strdel(&stem);
-	ft_strdel(&header);
-	ft_strdel(&src);
-	ft_strdel(&init);
-	ft_strdel(&names);
+static	int	print_each_file(t_grammar const *grammar, char **final_names)
+{
+	size_t	index;
+	void (*const	print[])(t_grammar const*, int, char const*) = {
+		print_grammar_proto, print_grammar_source, print_grammar_init,
+		print_grammar_names, print_grammar_header};
+	size_t const	t_index[] = {0, 0, 0, 4, 4};
+	int				fd;
+
+	index = 0;
+	while (index < ARRAY_LENGTH(print))
+	{
+		fd = open(final_names[index], O_WRONLY | O_TRUNC | O_CREAT,
+				CODE_FILE_PERMISSION);
+		if (fd == -1)
+			return (FAIL_TO_WRITE_FILE);
+		print[index](grammar, fd , final_names[t_index[index]]);
+		close(fd);
+		index++;
+	}
+	return (SUCCESS);
 }
 
-int	main(int argc, const char **argv)
+int			print_grammar(t_grammar const *grammar, char const *gram_name,
+		char const *header_dir, char const *src_dir)
+{
+	char const		*names[] = {
+		"interface.h", "source.c", "init.c", "names.c", "sym_list.h"};
+	char			*total_names[ARRAY_LENGTH(names)];
+	size_t			index;
+	int				ret;
+
+	index = 0;
+	while (index < ARRAY_LENGTH(names))
+	{
+		total_names[index] = ft_strvajoin(4,
+				last_char_of(names[index]) == 'h' ? header_dir : src_dir,
+				gram_name, "_", names[index]);
+		index++;
+	}
+	ret = print_each_file(grammar, total_names);
+	index = 0;
+	while (index < ARRAY_LENGTH(names))
+	{
+		ft_strdel(&total_names[index]);
+		index++;
+	}
+	return (ret);
+}
+
+int		main(int argc, const char **argv)
 {
 	t_grammar	*grammar;
 	char		*stem;
 
-	if (argc != 2)
+	if (argc < 2 || argc > 4)
 		return (EXIT_FAILURE);
 	grammar = parse_grammar(argv[1]);
-	if (grammar != NULL)
+	stem = basename(argv[1]);
+	if (grammar != NULL && stem != NULL)
 	{
-		print_grammar(stem);
+		print_grammar(grammar, stem,
+				argc > 2 ? argv[2] : "",
+				argc > 3 ? argv[3] : "");
 	}
 	else
 		return (EXIT_FAILURE);
+	ft_strdel(&stem);
+	destroy_grammar(&grammar);
 	return (EXIT_SUCCESS);
 }

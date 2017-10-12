@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_grammar.h                                 :+:      :+:    :+:   */
+/*   grammar_generator.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/09 11:57:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 11:26:54 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/12 17:58:12 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/12 17:59:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERATE_GRAMMAR_H
-# define GENERATE_GRAMMAR_H
-# include "libft.h"
+#ifndef GRAMMAR_GENERATOR_H
+# define GRAMMAR_GENERATOR_H
+# define CODE_FILE_PERMISSION 0644
+# define SUCCESS 0
+# define FAILURE 1
+# define FAIL_TO_WRITE_FILE 2
 
-/*
-** Print the grammar
-*/
-
-void	print_header(t_lst const *grammar, const char *header_file);
-void	print_source(t_lst const *grammar, char const *source_file);
-void	print_init(t_lst const *grammar, char const *init_file);
-void	print_names(t_lst const *grammar, char const *names_file);
-char	to_unix_const(char c);
 #endif

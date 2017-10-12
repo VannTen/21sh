@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 14:20:45 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 16:30:37 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 17:55:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ static void	adapt_print(void const *symbol, va_list args)
 	print_symbol_proto(symbol, fd, prefix_suffix[0], prefix_suffix[1]);
 }
 
-void		print_grammar_proto(t_grammar const *grammar, int const file)
+void		print_grammar_proto(t_grammar const *grammar, int const file,
+		char const *name)
 {
+	print_header_guard_in(file, name);
 	f_fifoiter_va(grammar->sym_list, adapt_print, file,
 			"t_symbol\t*create_", ";\n");
+	print_header_guard_out(file);
 }
