@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:26:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 19:44:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 11:07:26 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ t_symbol	*parse_symbol(char const *src)
 	name = ft_strip(name_and_prods[0], " \t\n");
 	if (name_and_prods == NULL)
 		return (NULL);
-	new_symbol = create_symbol();
-	new_symbol->name = name;
+	new_symbol = create_symbol(name);
 	if (name_and_prods[1] != NULL)
 		new_symbol->prods = parse_prods(name_and_prods[1]);
 	else

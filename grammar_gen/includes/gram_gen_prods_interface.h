@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 20:43:14 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 10:59:17 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 
 typedef	void const	t_sym_name;
 typedef t_sym_name*	t_prod;
+
+/*
+** Ressources management
+** Implementation file : gramm_gen_prod_ressources.c
+*/
+
+void	destroy_prods(t_prod ***prods);
 
 /*
 ** Testing prod

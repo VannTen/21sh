@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 20:47:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 10:57:59 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_symbol	t_symbol;
 ** Implementation file : gram_gen_sym_ressources.c
 */
 
-t_symbol	*create_symbol(void);
+t_symbol	*create_symbol(char const *name);
 void		destroy_symbol(t_symbol **to_destroy);
 
 /*
@@ -34,6 +34,8 @@ t_prod		*add_prod(t_symbol *sym, t_prod *prod);
 
 /*
 ** Getters
+** Take left recursive remove a t_prod object from sym and returns it, or return
+** NULL if there is no left recursive production in the symbol.
 ** Implementation file : gramm_gen_sym_get.c
 */
 

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gram_gen_sym_defs.h                                :+:      :+:    :+:   */
+/*   gramm_gen_prod_get.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 10:54:40 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/12 11:22:31 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/12 11:24:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAM_GEN_SYM_DEFS_H
-# define GRAM_GEN_SYM_DEFS_H
-# include "gram_gen_sym_interface.h"
-# include "gram_gen_prods_interface.h"
-# define DERIVATION_SIGN ':'
+#include "gram_gen_prods_defs.h"
+#include <stddef.h>
 
-struct s_symbol
+size_t	get_prod_len(t_prod const *prod)
 {
-	char const	*name;
-	t_prod		**prods;
-};
+	size_t	size;
 
-#endif
+	size = 0;
+	while (prod[size] != NULL)
+		size++;
+	return (size);
+}
