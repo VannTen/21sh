@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 14:17:52 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:04:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,12 @@ void		print_grammar_header(t_grammar const *grammar, int fd_header_file);
 ** Implementation file : grammar_transform.c
 */
 
+typedef enum	e_gram_type
+{
+	LL_1,
+	NB_GRAM_TYPES
+}				t_gram_type;
+
+t_grammar	*convert_to(t_grammar const *grammar, t_gram_type type);
 
 #endif
