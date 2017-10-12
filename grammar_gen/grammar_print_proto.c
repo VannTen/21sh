@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 14:20:45 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 14:30:36 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/12 16:30:37 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "gram_gen_sym_interface.h"
 #include "libft.h"
 
-void		print_symbol_proto(t_symbol const *symbol,
+static void		print_symbol_proto(t_symbol const *symbol,
 		int const file, const char *prefix, char const *suffix)
 {
 	char	*name;

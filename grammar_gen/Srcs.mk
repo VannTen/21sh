@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/12 15:06:56 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/12 16:22:07 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC :=\
 	grammar_print_proto.c\
 	grammar_print_header.c\
 	grammar_print_source.c\
+	grammar_print_names.c\
 	grammar_transform.c\
 	generate_grammar.c
 
