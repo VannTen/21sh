@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:45:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 12:22:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/13 13:54:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void			sym_destroy(void **v_sym)
 {
 	destroy_symbol((t_symbol**)v_sym);
 }
+
 static t_grammar	*create_grammar(t_fifo *sym_list)
 {
 	t_grammar	*new_gram;
