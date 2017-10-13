@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 18:23:18 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/13 13:47:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ static void	print_prods(t_prod **prods, int const fd)
 	{
 		ft_dprintf(fd, "\t\tnew->productions[%zu]"
 				" = generate_one_production(%zu, ",
-				index, ft_string_array_len((char const* const*)prods[index]));
+				index, ft_string_array_count((char const* const*)prods[index]));
 		ft_print_string_array_fd(fd, (char const* const*)prods[index], ", ");
+		index++;
 	}
 }
 
-void	print_sym_initializer(t_symbol const *sym, int const fd)
+void		print_sym_initializer(t_symbol const *sym, int const fd)
 {
 	const char	type_name[]	= "t_symbol";
 	char		*lower_case;
 	size_t		nb_prod;
 
-	nb_prod = ft_string_array_len((char const* const*)sym->prods);
+	nb_prod = sym->prods == NULL ?
+		0 : ft_string_array_count((char const* const*)sym->prods);
 	lower_case = ft_strmap(sym->name, f_tolower);
 	ft_dprintf(fd, "\n%1$s\t*create_%2$s(void)\n{\n"
 			"\t%1$s\t*new;\n"

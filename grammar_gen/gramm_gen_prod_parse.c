@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 11:00:26 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/13 13:25:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ t_prod			**parse_prods(char const *str_prods)
 	t_prod	**prods;
 
 	each_prod = ft_strsplit(str_prods, PROD_SEP_SIGN);
-	index = ft_string_array_len((char const* const*)each_prod);
+	if (each_prod == NULL)
+		return (NULL);
+	index = ft_string_array_count((char const* const*)each_prod);
 	prods = malloc(sizeof(t_prod*) * (index + 1));
 	if (prods != NULL)
 	{
@@ -51,6 +53,7 @@ t_prod			**parse_prods(char const *str_prods)
 			prods[index] = parse_one_prod(each_prod[index]);
 			index++;
 		}
+		prods[index] = NULL;
 	}
 	ft_free_string_array(&each_prod);
 	return (prods);
