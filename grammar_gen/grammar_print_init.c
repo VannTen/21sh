@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 12:26:17 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 17:28:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/13 14:06:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_symbol_init(t_symbol const *symbol,
 	char	*name;
 
 	name = ft_strmap(get_name(symbol), f_tolower);
-	ft_dprintf(file, "%s%s ,", prefix, name);
+	ft_dprintf(file, "%s%s, ", prefix, name);
 }
 
 static void	adapt_print(void const *symbol, va_list args)
@@ -45,7 +45,7 @@ void		print_grammar_init(t_grammar const *grammar, int const file,
 			"\tt_symbol\t*(*init_func[])(void) = {",
 			get_no_dir_part(header_proto_name));
 	f_fifoiter_va(grammar->sym_list, adapt_print, file, "create_");
-	ft_dprintf(file, " NULL};\n\n"
+	ft_dprintf(file, "NULL};\n\n"
 			"\tindex = 0;\n"
 			"\tgrammar = malloc(sizeof(t_symbol*) * NB_SYMBOLS);\n"
 			"\twhile (index < NB_SYMBOLS)\n"
