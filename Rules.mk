@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/12/13 19:41:31 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/09/19 16:55:33 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/12 09:44:20 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -59,8 +59,7 @@ LIBS_$(DIR) := $(LIBRARY)
 
 # Inclusion of subdirs Rules.mk
 
-$(foreach SUBDIR,$(addsuffix /,$(LIBRARY)),$(eval $(INCLUDE_SUBDIRS)))
-$(foreach SUBDIR,$(addsuffix /,$(SUBDIRS)),$(eval $(INCLUDE_SUBDIRS)))
+$(foreach SUBDIR,$(addsuffix /,$(LIBRARY) $(SUBDIRS)),$(eval $(INCLUDE_SUBDIRS)))
 
 
 # Add the obj and dependency dir to the list of generated dir
