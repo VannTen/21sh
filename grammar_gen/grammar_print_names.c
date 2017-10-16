@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "grammar_defs.h"
-#include "gram_gen_sym_interface.h"
+#include "sym_interface.h"
 
 static void	print_symbol_names(t_symbol const *symbol,
 		int const file)

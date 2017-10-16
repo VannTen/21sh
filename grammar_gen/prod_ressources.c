@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_prod_ressources.c                        :+:      :+:    :+:   */
+/*   prod_ressources.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_prods_defs.h"
+#include "prods_defs.h"
 #include <stdlib.h>
 
 void		destroy_one_prod(t_prod	**to_destroy)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gram_gen_prods_defs.h                              :+:      :+:    :+:   */
+/*   prods_defs.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #ifndef GRAM_GEN_PRODS_DEFS_H
 # define GRAM_GEN_PRODS_DEFS_H
-# include "gram_gen_prods_interface.h"
+# include "prods_interface.h"
 # define SYMBOL_NAME_SEP ' '
 # define PROD_SEP_SIGN '|'
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_sym_print.c                              :+:      :+:    :+:   */
+/*   sym_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_sym_defs.h"
+#include "sym_defs.h"
 #include "libft.h"
 
 static void	print_prods(t_prod **prods, int const fd)

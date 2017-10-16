@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_prod_set.c                               :+:      :+:    :+:   */
+/*   prod_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_prods_defs.h"
+#include "prods_defs.h"
 #include <stdlib.h>
 
 t_prod	*append_to_prod(t_sym_name *type, t_prod const *prod)

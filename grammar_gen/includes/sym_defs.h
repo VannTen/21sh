@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gram_gen_sym_defs.h                                :+:      :+:    :+:   */
+/*   sym_defs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,8 @@
 
 #ifndef GRAM_GEN_SYM_DEFS_H
 # define GRAM_GEN_SYM_DEFS_H
-# include "gram_gen_sym_interface.h"
-# include "gram_gen_prods_interface.h"
+# include "sym_interface.h"
+# include "prods_interface.h"
 # define DERIVATION_SIGN ':'
 
 struct s_symbol

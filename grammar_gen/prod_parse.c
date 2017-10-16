@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_prod_parse.c                             :+:      :+:    :+:   */
+/*   prod_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_prods_defs.h"
+#include "prods_defs.h"
 #include "libft.h"
 #include <stdlib.h>
 #include <stdarg.h>

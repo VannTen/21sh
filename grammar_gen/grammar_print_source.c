@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "grammar_defs.h"
-#include "gram_gen_sym_interface.h"
+#include "sym_interface.h"
 #include "libft.h"
 #include <stdarg.h>
 

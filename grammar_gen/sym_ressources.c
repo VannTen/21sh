@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_sym_ressources.c                         :+:      :+:    :+:   */
+/*   sym_ressources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_sym_defs.h"
-#include "gram_gen_prods_interface.h"
+#include "sym_defs.h"
+#include "prods_interface.h"
 #include <stdlib.h>
 
 t_symbol	*create_symbol(char const *name)

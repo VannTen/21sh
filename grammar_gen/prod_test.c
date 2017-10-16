@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gramm_gen_prod_test.c                              :+:      :+:    :+:   */
+/*   prod_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gram_gen_prods_defs.h"
+#include "prods_defs.h"
 #include "libft.h"
 
 t_bool	is_left_recursive(t_sym_name const *sym_name, t_prod const *prod)
