@@ -1,3 +1,6 @@
 [submodule "grammar_gen"]
 	path = grammar_gen
 	url = git@github.com:VannTen/grammar_generator.git
+[submodule "libft"]
+	path = libft
+	url = git@github.com:VannTen/libft.git
